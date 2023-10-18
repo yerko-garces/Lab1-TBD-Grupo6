@@ -20,7 +20,10 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation group: 'org.sql2o', name: 'sql2o', version: '1.6.0'
 	implementation group: 'org.postgresql', name: 'postgresql', version: '42.6.0'
-
+	implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
+	implementation group: 'org.mindrot', name: 'jbcrypt', version: '0.4'
+	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.2'
+	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.2'
 }
 
 tasks.named('test') {

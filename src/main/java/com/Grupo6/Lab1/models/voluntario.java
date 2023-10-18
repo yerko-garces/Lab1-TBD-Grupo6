@@ -1,11 +1,21 @@
 package com.Grupo6.Lab1.models;
 
-public class voluntario {
+public class Voluntario {
     private Long id;
     private String email;
     private String rut;
     private String nombre_completo;
     private Integer rol_id;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    private String password;
 
     public Long getId() {
         return id;

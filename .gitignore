@@ -1,4 +1,8 @@
 HELP.md
+src/main/java/com/Grupo6/Lab1/respositories/DatabaseContext.java
+src/main/resources/application.properties
+build
+.idea
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
