@@ -6,6 +6,8 @@ public class Voluntario {
     private String rut;
     private String nombre_completo;
     private Integer rol_id;
+    private String password;
+
 
     public String getPassword() {
         return password;
@@ -14,8 +16,6 @@ public class Voluntario {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    private String password;
 
     public Long getId() {
         return id;

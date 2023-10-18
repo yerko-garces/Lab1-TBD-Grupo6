@@ -1,6 +1,7 @@
 package com.Grupo6.Lab1.respositories;
 
 import com.Grupo6.Lab1.models.Voluntario;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
@@ -32,14 +33,15 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository {
 
     @Override
     public void registrar(Voluntario voluntario) {
-        String contra = voluntario.getPassword();
+        String contra = BCrypt.hashpw(voluntario.getPassword(), BCrypt.gensalt());
 
         try(Connection conn = sql2o.open()){
-            conn.createQuery("INSERT INTO voluntario (rut, nombre, apellido, email, password) VALUES (:rut, :nombre, :apellido, :email, :password)")
+            conn.createQuery("INSERT INTO voluntario (email, rut, nombre_completo, rol_id, password) VALUES (:email, :rut, :nombre_completo, :rol_id, :password)")
                     .addParameter("rut", voluntario.getRut())
-                    .addParameter("nombre", voluntario.getNombre_completo())
+                    .addParameter("nombre_completo", voluntario.getNombre_completo())
                     .addParameter("email", voluntario.getEmail())
-                    .addParameter("password", voluntario.getPassword())
+                    .addParameter("password", contra)
+                    .addParameter("rol_id",1)
                     .executeUpdate();
         }
     }

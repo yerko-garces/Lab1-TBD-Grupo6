@@ -2,6 +2,7 @@ package com.Grupo6.Lab1.services;
 
 import com.Grupo6.Lab1.models.Voluntario;
 import com.Grupo6.Lab1.respositories.VoluntarioRepository;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,7 @@ public class VoluntarioService {
         if(v == null){
             return false;
         }
-        return v.getPassword().equals(voluntario.getPassword());
+        return BCrypt.checkpw(voluntario.getPassword(), v.getPassword());
     }
 
     public int registrar(Voluntario voluntario) {

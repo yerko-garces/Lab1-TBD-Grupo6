@@ -27,7 +27,7 @@ public class voluntarioController {
         return ResponseEntity.badRequest().build();
     }
 
-    @PostMapping("/registrar")
+    @PostMapping("/register")
     public ResponseEntity<String> registrar(@RequestBody Voluntario voluntario){
         if (voluntario.getEmail() == null || voluntario.getEmail().isEmpty() || voluntario.getRut() == null || voluntario.getRut().isEmpty()){
             return ResponseEntity.badRequest().build();
