@@ -13,7 +13,7 @@ public class InstitucionService {
     private InstitucionRepository institucionRepository;
 
     public Institucion createInstitucion(Institucion institucion) {
-        return institucionRepository.create(institucion);
+        return institucionRepository.crear(institucion);
     }
 
     public String updateInstitucion(Institucion institucion, Long idInstitucion) {
