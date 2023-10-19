@@ -6,11 +6,10 @@ import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Repository
-public class EmeHabilidadRepositoryImp implements EmeHabilidadRepository{
+public class EmeHabilidadRepositoryImp implements EmeHabilidadRepository {
 
     @Autowired
     private Sql2o sql2o;
