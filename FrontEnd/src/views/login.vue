@@ -23,8 +23,11 @@ export default {
         });
 
         if (response.status === 200) {
-          const token = response.data;
+          
+          const token = response.data.token;
+          console.log(response.data.token)
           localStorage.setItem("token", token);
+          localStorage.setItem("voluntario",response.data.voluntario)
           this.$router.push("/about");
         }
       } catch (error) {

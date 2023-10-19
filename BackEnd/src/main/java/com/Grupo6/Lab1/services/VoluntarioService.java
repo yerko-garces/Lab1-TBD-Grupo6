@@ -29,6 +29,10 @@ public class VoluntarioService {
         return BCrypt.checkpw(voluntario.getContraseniaVoluntario(), v.getContraseniaVoluntario());
     }
 
+    public Voluntario getVoluntario(String email){
+        return voluntarioRepository.getVoluntarioByEmail(email);
+    }
+
     public int registrar(Voluntario voluntario) {
         if(voluntarioRepository.getVoluntarioByEmail(voluntario.getEmailVoluntario()) != null){
             return 0;

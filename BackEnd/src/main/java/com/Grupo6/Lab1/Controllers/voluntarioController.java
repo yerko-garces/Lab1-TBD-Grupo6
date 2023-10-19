@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/voluntario")
@@ -18,7 +20,7 @@ public class voluntarioController {
     private VoluntarioService voluntarioService;
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody Voluntario voluntario){
+    public ResponseEntity<Map<String, Object>> login(@RequestBody Voluntario voluntario){
         System.out.println(voluntario);
         if (voluntario.getEmailVoluntario() == null){
             System.out.println("email null");
@@ -26,7 +28,10 @@ public class voluntarioController {
         }
         if(voluntarioService.login(voluntario)){
             System.out.println("login ok");
-            return ResponseEntity.ok(JwtUtil.generateToken(voluntario.getEmailVoluntario()));
+            Map<String, Object> response = new HashMap<>();
+            response.put("token", JwtUtil.generateToken(voluntario.getEmailVoluntario()));
+            response.put("voluntario", voluntarioService.getVoluntario(voluntario.getEmailVoluntario()));
+            return ResponseEntity.ok().body(response);
         }
         System.out.println("login bad");
         return ResponseEntity.badRequest().build();
