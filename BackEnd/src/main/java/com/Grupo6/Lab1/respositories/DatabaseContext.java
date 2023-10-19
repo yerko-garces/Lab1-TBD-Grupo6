@@ -14,11 +14,7 @@ public class DatabaseContext {
     @Value("postgres")
     private String dbUser;
 
-<<<<<<< Updated upstream
     @Value("Aaldea1604")
-=======
-    @Value("psw123")
->>>>>>> Stashed changes
     private String dbPass;
 
     @Bean
