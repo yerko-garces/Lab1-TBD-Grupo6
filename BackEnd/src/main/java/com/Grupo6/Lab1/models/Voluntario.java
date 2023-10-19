@@ -47,6 +47,7 @@ public class Voluntario {
         this.nombreCompletoVoluntario = nombreCompletoVoluntario;
     }
 
+
     @Override
     public String toString() {
         return "Voluntario{" +
