@@ -1,16 +1,22 @@
 package com.Grupo6.Lab1.models;
 
 public class Tarea {
-    Long id;
-    String nombreTarea;
-    Long estadoId;
+    private Long idTarea;
+    private String nombreTarea;
+    private Long idEstadoTarea;
 
-    public Long getId() {
-        return id;
+    public Tarea(Long idTarea, String nombreTarea, Long idEstadoTarea) {
+        this.idTarea = idTarea;
+        this.nombreTarea = nombreTarea;
+        this.idEstadoTarea = idEstadoTarea;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Long getIdTarea() {
+        return idTarea;
+    }
+
+    public void setIdTarea(Long idTarea) {
+        this.idTarea = idTarea;
     }
 
     public String getNombreTarea() {
@@ -21,11 +27,11 @@ public class Tarea {
         this.nombreTarea = nombreTarea;
     }
 
-    public Long getEstadoId() {
-        return estadoId;
+    public Long getIdEstadoTarea() {
+        return idEstadoTarea;
     }
 
-    public void setEstadoId(Long estadoId) {
-        this.estadoId = estadoId;
+    public void setIdEstadoTarea(Long idEstadoTarea) {
+        this.idEstadoTarea = idEstadoTarea;
     }
 }

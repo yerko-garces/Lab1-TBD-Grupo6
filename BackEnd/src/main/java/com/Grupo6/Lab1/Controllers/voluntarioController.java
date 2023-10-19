@@ -18,18 +18,18 @@ public class voluntarioController {
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody Voluntario voluntario){
-        if (voluntario.getEmail() == null || voluntario.getEmail().isEmpty() || voluntario.getRut() == null || voluntario.getRut().isEmpty()){
+        if (voluntario.getEmailVoluntario() == null || voluntario.getEmailVoluntario().isEmpty() || voluntario.getRutVoluntario() == null || voluntario.getRutVoluntario().isEmpty()){
             return ResponseEntity.badRequest().build();
         }
         if(voluntarioService.login(voluntario)){
-            return ResponseEntity.ok(JwtUtil.generateToken(voluntario.getEmail()));
+            return ResponseEntity.ok(JwtUtil.generateToken(voluntario.getEmailVoluntario()));
         }
         return ResponseEntity.badRequest().build();
     }
 
     @PostMapping("/register")
     public ResponseEntity<String> registrar(@RequestBody Voluntario voluntario){
-        if (voluntario.getEmail() == null || voluntario.getEmail().isEmpty() || voluntario.getRut() == null || voluntario.getRut().isEmpty()){
+        if (voluntario.getEmailVoluntario() == null || voluntario.getEmailVoluntario().isEmpty() || voluntario.getRutVoluntario() == null || voluntario.getRutVoluntario().isEmpty()){
             return ResponseEntity.badRequest().build();
         }
         voluntarioService.registrar(voluntario);

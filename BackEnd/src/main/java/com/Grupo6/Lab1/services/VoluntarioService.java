@@ -18,15 +18,15 @@ public class VoluntarioService {
     }
 
     public boolean login(Voluntario voluntario){
-        Voluntario v = voluntarioRepository.getVoluntarioByEmail(voluntario.getEmail());
+        Voluntario v = voluntarioRepository.getVoluntarioByEmail(voluntario.getEmailVoluntario());
         if(v == null){
             return false;
         }
-        return BCrypt.checkpw(voluntario.getPassword(), v.getPassword());
+        return BCrypt.checkpw(voluntario.getContraseniaVoluntario(), v.getContraseniaVoluntario());
     }
 
     public int registrar(Voluntario voluntario) {
-        if(voluntarioRepository.getVoluntarioByEmail(voluntario.getEmail()) != null){
+        if(voluntarioRepository.getVoluntarioByEmail(voluntario.getEmailVoluntario()) != null){
             return 0;
         }
         voluntarioRepository.registrar(voluntario);

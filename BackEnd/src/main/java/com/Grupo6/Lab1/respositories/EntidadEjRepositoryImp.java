@@ -1,7 +1,6 @@
 package com.Grupo6.Lab1.respositories;
 
 
-import com.Grupo6.Lab1.models.EntidadEj;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Sql2o;

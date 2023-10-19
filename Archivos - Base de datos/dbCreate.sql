@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS Voluntario(
     emailVoluntario text,
     rutVoluntario text,
     nombreCompletoVoluntario text,
-    contraseniaVoluntario,
+    contraseniaVoluntario text,
     PRIMARY KEY (idVoluntario)
 );
 
@@ -36,23 +36,21 @@ CREATE TABLE IF NOT EXISTS EmeHabilidad(
     idHabilidad bigint,
     PRIMARY KEY (idEmehabilidad),
     FOREIGN KEY (idEmergencia) REFERENCES Emergencia(idEmergencia),
-    FOREIGN KEY (idHabilidad) REFERENCES Habilidad(id_habilidad)
+    FOREIGN KEY (idHabilidad) REFERENCES Habilidad(idHabilidad)
+);
+
+CREATE TABLE IF NOT EXISTS EstadoTarea(
+    idEstadoTarea serial NOT null,
+    estadoTarea boolean,
+    PRIMARY KEY (idEstadoTarea)
 );
 
 CREATE TABLE IF NOT EXISTS Tarea(
     idTarea serial NOT null,
     nombreTarea text,
-    idEstado bigint,
+    idEstadoTarea bigint,
     PRIMARY KEY (idTarea),
-    FOREIGN KEY (idEstado) REFERENCES EstadoTarea(idEstadoTarea)
-);
-
-CREATE TABLE IF NOT EXISTS EstadoTarea(
-    idEstadoTarea serial NOT null,
-    idTarea bigint,
-    estadoTarea boolean,
-    PRIMARY KEY (idEstadoTarea),
-    FOREIGN KEY (idTarea) REFERENCES Tarea(idTarea)
+    FOREIGN KEY (idEstadoTarea) REFERENCES EstadoTarea(idEstadoTarea)
 );
 
 CREATE TABLE IF NOT EXISTS VoluntarioHabilidad(
@@ -60,7 +58,7 @@ CREATE TABLE IF NOT EXISTS VoluntarioHabilidad(
     idVoluntario bigint,
     idHabilidad bigint,
     PRIMARY KEY (idVoluntarioHabilidad),
-    FOREIGN KEY (idVoluntario) REFERENCES Voluntario(idVoluntario).
+    FOREIGN KEY (idVoluntario) REFERENCES Voluntario(idVoluntario),
     FOREIGN KEY (idHabilidad) REFERENCES Habilidad(idHabilidad)
 );
 
@@ -70,7 +68,7 @@ CREATE TABLE IF NOT EXISTS Ranking(
     idVoluntario bigint,
     idTarea bigint,
     PRIMARY KEY (idRanking),
-    FOREIGN KEY (idVoluntario) REFERENCES Voluntario(idVoluntario).
+    FOREIGN KEY (idVoluntario) REFERENCES Voluntario(idVoluntario),
     FOREIGN KEY (idTarea) REFERENCES Tarea(idTarea)
 );
 
@@ -82,4 +80,3 @@ CREATE TABLE IF NOT EXISTS TareaHabilidad(
     FOREIGN KEY (idTarea) REFERENCES Tarea(idTarea),
     FOREIGN KEY (idHabilidad) REFERENCES Habilidad(idHabilidad)
 )
-

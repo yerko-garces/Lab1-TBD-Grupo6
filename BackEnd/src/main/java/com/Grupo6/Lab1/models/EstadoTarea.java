@@ -1,22 +1,27 @@
 package com.Grupo6.Lab1.models;
 
 public class EstadoTarea {
-    Long id;
-    String nombreEstado;
+    private Long idEstadoTarea;
+    private Boolean estadoTarea;
 
-    public Long getId() {
-        return id;
+    public EstadoTarea(Long idEstadoTarea, Boolean estadoTarea) {
+        this.idEstadoTarea = idEstadoTarea;
+        this.estadoTarea = estadoTarea;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Long getIdEstadoTarea() {
+        return idEstadoTarea;
     }
 
-    public String getNombreEstado() {
-        return nombreEstado;
+    public void setIdEstadoTarea(Long idEstadoTarea) {
+        this.idEstadoTarea = idEstadoTarea;
     }
 
-    public void setNombreEstado(String nombreEstado) {
-        this.nombreEstado = nombreEstado;
+    public Boolean getEstadoTarea() {
+        return estadoTarea;
+    }
+
+    public void setEstadoTarea(Boolean estadoTarea) {
+        this.estadoTarea = estadoTarea;
     }
 }

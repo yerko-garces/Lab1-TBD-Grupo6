@@ -1,8 +1,6 @@
 package com.Grupo6.Lab1.respositories;
 
 
-import com.Grupo6.Lab1.models.EntidadEj;
-
 import java.util.List;
 
 public interface EntidadEjRepository {

@@ -33,13 +33,13 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository {
 
     @Override
     public void registrar(Voluntario voluntario) {
-        String contra = BCrypt.hashpw(voluntario.getPassword(), BCrypt.gensalt());
+        String contra = BCrypt.hashpw(voluntario.getContraseniaVoluntario(), BCrypt.gensalt());
 
         try(Connection conn = sql2o.open()){
             conn.createQuery("INSERT INTO voluntario (email, rut, nombre_completo, rol_id, password) VALUES (:email, :rut, :nombre_completo, :rol_id, :password)")
-                    .addParameter("rut", voluntario.getRut())
-                    .addParameter("nombre_completo", voluntario.getNombre_completo())
-                    .addParameter("email", voluntario.getEmail())
+                    .addParameter("rut", voluntario.getRutVoluntario())
+                    .addParameter("nombre_completo", voluntario.getNombreCompletoVoluntario())
+                    .addParameter("email", voluntario.getEmailVoluntario())
                     .addParameter("password", contra)
                     .addParameter("rol_id",1)
                     .executeUpdate();
