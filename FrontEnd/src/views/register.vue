@@ -2,36 +2,40 @@
 import axios from "axios";
 
 export default {
-  name: "HomeView",
+  name: "register",
   data() {
     return {
-      usuario: "",
+      emailVoluntario:"",
+      rut:"",
+      nombre:"",
       password: "",
       error: "",
     };
   },
   methods: {
-    async login() {
+    async registrar() {
+        console.log(this.nombre);
+        console.log(this.rut);
       try {
         const response = await axios({
           method: "POST",
-          url: "http://localhost:8090/voluntario/login",
+          url: "http://localhost:8090/voluntario/register",
           data: {
-            emailVoluntario: this.usuario,
+            emailVoluntario: this.emailVoluntario,
             contraseniaVoluntario: this.password,
+            nombreCompletoVoluntario: this.nombre,
+            rutVoluntario: this.rut
           },
         });
 
         if (response.status === 200) {
-          const token = response.data;
-          localStorage.setItem("token", token);
-          this.$router.push("/about");
+          this.$router.push("/");
         }
       } catch (error) {
         this.$swal({
           icon: "error",
           title: "Error",
-          text: "Credenciales inválidas.",
+          text: "Error al registrar al ususario",
         });
       }
     },
@@ -53,7 +57,7 @@ export default {
           label="Usuario"
           placeholder="Introduzca su email de usuario"
           type="input"
-          v-model="usuario"
+          v-model="emailVoluntario"
         ></v-text-field>
       </v-responsive>
 
@@ -66,28 +70,36 @@ export default {
         ></v-text-field>
       </v-responsive>
 
+      <v-responsive class="mx-auto" max-width="400">
+        <v-text-field
+          label="Nombre"
+          placeholder="Introduzca su nombre"
+          type="input"
+          v-model="nombre"
+        ></v-text-field>
+      </v-responsive>
+
+      <v-responsive class="mx-auto" max-width="400">
+        <v-text-field
+          label="Rut"
+          placeholder="Introduzca su Rut"
+          type="input"
+          v-model="rut"
+        ></v-text-field>
+      </v-responsive>
+
       <v-btn
         block
         class="mb-8"
         color="green"
         size="large"
         variant="tonal"
-        @click="login"
-      >
-        INICIAR SESIÓN
-      </v-btn>
-
-      <v-btn
-        block
-        class="mb-8"
-        color="blue"
-        size="large"
-        variant="tonal"
-        to="/registrar-usuario"
-        @click="crear"
+        @click="registrar"
       >
         Registrarse
       </v-btn>
+
+    
 
       <v-card-text class="text-center">
         <a

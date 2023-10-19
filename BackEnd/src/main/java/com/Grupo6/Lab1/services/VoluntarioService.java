@@ -18,8 +18,12 @@ public class VoluntarioService {
     }
 
     public boolean login(Voluntario voluntario){
+        System.out.println("busca voluntario");
         Voluntario v = voluntarioRepository.getVoluntarioByEmail(voluntario.getEmailVoluntario());
+        System.out.println("se econtro voluntario");
+        System.out.println(v);
         if(v == null){
+            System.out.println("v null");
             return false;
         }
         return BCrypt.checkpw(voluntario.getContraseniaVoluntario(), v.getContraseniaVoluntario());

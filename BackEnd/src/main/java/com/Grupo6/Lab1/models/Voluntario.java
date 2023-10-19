@@ -47,4 +47,14 @@ public class Voluntario {
         this.nombreCompletoVoluntario = nombreCompletoVoluntario;
     }
 
+    @Override
+    public String toString() {
+        return "Voluntario{" +
+                "idVoluntario=" + idVoluntario +
+                ", emailVoluntario='" + emailVoluntario + '\'' +
+                ", rutVoluntario='" + rutVoluntario + '\'' +
+                ", nombreCompletoVoluntario='" + nombreCompletoVoluntario + '\'' +
+                ", contraseniaVoluntario='" + contraseniaVoluntario + '\'' +
+                '}';
+    }
 }

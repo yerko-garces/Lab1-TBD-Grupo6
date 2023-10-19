@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/voluntario")
+@CrossOrigin(origins = "*")
 public class voluntarioController {
 
     @Autowired
@@ -18,18 +19,24 @@ public class voluntarioController {
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody Voluntario voluntario){
-        if (voluntario.getEmailVoluntario() == null || voluntario.getEmailVoluntario().isEmpty() || voluntario.getRutVoluntario() == null || voluntario.getRutVoluntario().isEmpty()){
+        System.out.println(voluntario);
+        if (voluntario.getEmailVoluntario() == null){
+            System.out.println("email null");
             return ResponseEntity.badRequest().build();
         }
         if(voluntarioService.login(voluntario)){
+            System.out.println("login ok");
             return ResponseEntity.ok(JwtUtil.generateToken(voluntario.getEmailVoluntario()));
         }
+        System.out.println("login bad");
         return ResponseEntity.badRequest().build();
     }
 
     @PostMapping("/register")
     public ResponseEntity<String> registrar(@RequestBody Voluntario voluntario){
+        System.out.println(voluntario);
         if (voluntario.getEmailVoluntario() == null || voluntario.getEmailVoluntario().isEmpty() || voluntario.getRutVoluntario() == null || voluntario.getRutVoluntario().isEmpty()){
+            System.out.println("email null");
             return ResponseEntity.badRequest().build();
         }
         voluntarioService.registrar(voluntario);

@@ -25,8 +25,8 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository {
     @Override
     public Voluntario getVoluntarioByEmail(String email) {
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("SELECT * FROM voluntario WHERE email = :email")
-                    .addParameter("email", email)
+            return conn.createQuery("SELECT * FROM voluntario WHERE emailvoluntario = :emailvoluntario")
+                    .addParameter("emailvoluntario", email)
                     .executeAndFetchFirst(Voluntario.class);
         }
     }
@@ -36,12 +36,11 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository {
         String contra = BCrypt.hashpw(voluntario.getContraseniaVoluntario(), BCrypt.gensalt());
 
         try(Connection conn = sql2o.open()){
-            conn.createQuery("INSERT INTO voluntario (email, rut, nombre_completo, rol_id, password) VALUES (:email, :rut, :nombre_completo, :rol_id, :password)")
+            conn.createQuery("INSERT INTO voluntario (emailVoluntario, rutVoluntario, nombreCompletoVoluntario, contraseniaVoluntario) VALUES (:email, :rut, :nombre_completo, :password)")
                     .addParameter("rut", voluntario.getRutVoluntario())
                     .addParameter("nombre_completo", voluntario.getNombreCompletoVoluntario())
                     .addParameter("email", voluntario.getEmailVoluntario())
                     .addParameter("password", contra)
-                    .addParameter("rol_id",1)
                     .executeUpdate();
         }
     }
