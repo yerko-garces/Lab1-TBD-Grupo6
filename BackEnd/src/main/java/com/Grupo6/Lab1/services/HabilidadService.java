@@ -20,4 +20,8 @@ public class HabilidadService {
     public List<Habilidad> verHabilidad(){return habilidadRepository.getAll();}
 
     public void borrarHabilidad(Long idEstadoTarea){habilidadRepository.delete(idEstadoTarea);}
+
+    public List<Habilidad> obtenerHabilidades(Long idVoluntario) {
+        return habilidadRepository.obtenerHabilidadesdelVoluntario(idVoluntario);
+    }
 }

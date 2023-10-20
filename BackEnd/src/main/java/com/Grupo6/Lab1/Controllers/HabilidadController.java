@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 @RestController
@@ -35,5 +34,10 @@ public class HabilidadController {
 
     @DeleteMapping("/borrarEmergencia/{id}")
     public void borrarHabilidad(@PathVariable Long id){habilidadService.borrarHabilidad(id);}
+
+    @GetMapping("/obtenerHabilidades/{idVoluntario}")
+    public ArrayList<Habilidad> obtenerHabilidades(@PathVariable Long idVoluntario) {
+        return (ArrayList<Habilidad>)habilidadService.obtenerHabilidades(idVoluntario);
+    }
 
 }

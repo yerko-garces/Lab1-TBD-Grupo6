@@ -60,4 +60,23 @@ public class HabilidadRepositoryImp implements  HabilidadRepository{
             System.out.println(e.getMessage());
         }
     }
+
+    public List<Habilidad> obtenerHabilidadesdelVoluntario(Long idVoluntario) {
+        try(Connection conn = sql2o.open()){
+            String sql="SELECT Em.idEmergencia, Em.nombreEmergencia, Ta.idTarea, Ta.nombreTarea, Ha.nombreHabilidad AS habilidades" +
+                    "FROM Voluntario AS V" +
+                    "JOIN VoluntarioHabilidad AS VH ON V.idVoluntario = VH.idVoluntario" +
+                    "JOIN Habilidad Ha ON VH.idHabilidad = Ha.idHabilidad" +
+                    "JOIN EmeHabilidad Eh ON Ha.idHabilidad = Eh.idHabilidad" +
+                    "JOIN Emergencia Em ON Eh.idEmergencia = Em.idEmergencia" +
+                    "JOIN Tarea Ta ON Em.idEmergencia = Ta.idEmergencia" +
+                    "WHERE V.idVoluntario = :idVoluntario";
+            return conn.createQuery(sql)
+                    .addParameter("idVoluntario", idVoluntario)
+                    .executeAndFetch(Habilidad.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
 }

@@ -1,4 +1,3 @@
-
 CREATE TABLE IF NOT EXISTS Institucion(
     idInstitucion serial NOT null,
     nombreInstitucion text,
@@ -49,8 +48,10 @@ CREATE TABLE IF NOT EXISTS Tarea(
     idTarea serial NOT null,
     nombreTarea text,
     idEstadoTarea bigint,
+    idEmergencia bigint,
     PRIMARY KEY (idTarea),
-    FOREIGN KEY (idEstadoTarea) REFERENCES EstadoTarea(idEstadoTarea)
+    FOREIGN KEY (idEstadoTarea) REFERENCES EstadoTarea(idEstadoTarea),
+    FOREIGN KEY (idEmergencia) REFERENCES Emergencia(idEmergencia)
 );
 
 CREATE TABLE IF NOT EXISTS VoluntarioHabilidad(
