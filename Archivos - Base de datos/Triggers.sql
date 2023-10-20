@@ -1,6 +1,6 @@
 CREATE TABLE logs (
     id SERIAL PRIMARY KEY,
-    usuario_id BIGINT,
+    idUsuario BIGINT,
     descripcion TEXT,
     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
 );
@@ -10,11 +10,11 @@ RETURNS TRIGGER AS
 $$
 BEGIN
     IF TG_OP = 'INSERT' THEN
-        INSERT INTO logs (usuario_id, descripcion) VALUES (1,'Nueva inserción realizada');
+        INSERT INTO logs (idUsuario, descripcion) VALUES (1,'Nueva inserción realizada');
     ELSIF TG_OP = 'UPDATE' THEN
-        INSERT INTO logs (usuario_id, descripcion) VALUES (1,'Actualización realizada');
+        INSERT INTO logs (idUsuario, descripcion) VALUES (1,'Actualización realizada');
     ELSIF TG_OP = 'DELETE' THEN
-        INSERT INTO logs (usuario_id, descripcion) VALUES (1,'Eliminación realizada');
+        INSERT INTO logs (idUsuario, descripcion) VALUES (1,'Eliminación realizada');
     END IF;
     
     RETURN NEW;

@@ -14,7 +14,7 @@ public class DatabaseContext {
     @Value("postgres")
     private String dbUser;
 
-    @Value("Aaldea1604")
+    @Value("psw123")
     private String dbPass;
 
     @Bean
