@@ -1,5 +1,6 @@
 package com.Grupo6.Lab1.Controllers;
 
+import com.Grupo6.Lab1.models.Logs;
 import com.Grupo6.Lab1.services.LogsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,5 +15,5 @@ public class LogsController {
     private LogsService logsService;
 
     @GetMapping("/verLogs")
-    public List mostrarLogs(){return logsService.entregarLogs();}
+    public List<Logs> mostrarLogs(){return logsService.entregarLogs();}
 }

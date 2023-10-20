@@ -16,11 +16,12 @@ public class TareaRepositoryImp implements TareaRepository {
     @Override
     public Tarea create(Tarea tarea) {
         try (Connection conn = sql2o.open()) {
-            String sql = "INSERT INTO public.Tarea(nombreTarea, idEstadoTarea) " +
+            String sql = "INSERT INTO public.Tarea(nombreTarea, idEstadoTarea, idEmergencia) " +
                     "VALUES (:nombreTarea, :idEstadoTarea)";
             conn.createQuery(sql, true)
                     .addParameter("nombreTarea", tarea.getNombreTarea())
                     .addParameter("idEstadoTarea", tarea.getIdEstadoTarea())
+                    .addParameter("idEmergencia", tarea.getIdEmergencia())
                     .executeUpdate();
             return tarea;
         } catch (Exception e) {
@@ -43,11 +44,12 @@ public class TareaRepositoryImp implements TareaRepository {
     @Override
     public String update(Tarea tarea, Long idTarea) {
         try (Connection conn = sql2o.open()) {
-            String updateSql = "UPDATE Tarea SET nombreTarea=:nombreTarea, idEstadoTarea=:idEstadoTarea WHERE idTarea=:idTarea";
+            String updateSql = "UPDATE Tarea SET nombreTarea=:nombreTarea, idEstadoTarea=:idEstadoTarea, idEmergencia=:idEmergencia WHERE idTarea=:idTarea";
             conn.createQuery(updateSql)
                     .addParameter("idTarea", idTarea)
                     .addParameter("nombreTarea", tarea.getNombreTarea())
                     .addParameter("idEstadoTarea", tarea.getIdEstadoTarea())
+                    .addParameter("idEmergencia", tarea.getIdEmergencia())
                     .executeUpdate();
             return "Tarea actualizada";
         } catch (Exception e) {

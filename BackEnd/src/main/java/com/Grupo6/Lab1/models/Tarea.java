@@ -4,11 +4,13 @@ public class Tarea {
     private Long idTarea;
     private String nombreTarea;
     private Long idEstadoTarea;
+    private Long idEmergencia;
 
-    public Tarea(Long idTarea, String nombreTarea, Long idEstadoTarea) {
+    public Tarea(Long idTarea, String nombreTarea, Long idEstadoTarea, Long idEmergencia) {
         this.idTarea = idTarea;
         this.nombreTarea = nombreTarea;
         this.idEstadoTarea = idEstadoTarea;
+        this.idEmergencia = idEmergencia;
     }
 
     public Long getIdTarea() {
@@ -33,5 +35,13 @@ public class Tarea {
 
     public void setIdEstadoTarea(Long idEstadoTarea) {
         this.idEstadoTarea = idEstadoTarea;
+    }
+
+    public Long getIdEmergencia() {
+        return idEmergencia;
+    }
+
+    public void setIdEmergencia(Long idEmergencia) {
+        this.idEmergencia = idEmergencia;
     }
 }

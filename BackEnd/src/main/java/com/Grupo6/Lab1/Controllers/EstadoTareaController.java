@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Service
 public class EstadoTareaController {
 
@@ -13,17 +15,15 @@ public class EstadoTareaController {
     private EstadoTareaService estadoTareaService;
 
     @PostMapping("/crearEstadoTarea")
-    public void crearEstadoTarea(@RequestBody EstadoTarea estadoTarea){
-        estadoTareaService.crearEstadoTarea (estadoTarea);
-    }
+    public EstadoTarea crearEstadoTarea(@RequestBody EstadoTarea estadoTarea){return estadoTareaService.crearEstadoTarea (estadoTarea);}
 
     @PutMapping("/actualizarEstadoTarea/{id}")
-    public void actualizarEstadoTarea(@RequestBody EstadoTarea estadoTarea, @PathVariable Long id){
-        estadoTareaService.actualizarEstadoTarea(estadoTarea, id);
+    public String actualizarEstadoTarea(@RequestBody EstadoTarea estadoTarea, @PathVariable Long id){
+        return   estadoTareaService.actualizarEstadoTarea(estadoTarea, id);
     }
 
     @GetMapping("/verEstadoTarea")
-    public void mostrarEstadoTarea(){estadoTareaService.verEstadoTarea ();}
+    public List<EstadoTarea> mostrarEstadoTarea(){return estadoTareaService.verEstadoTarea ();}
 
     @DeleteMapping("/borrarEmergencia/{id}")
     public void borrarEstadoTarea(@PathVariable Long id){estadoTareaService.borrarEstadotarea(id);}

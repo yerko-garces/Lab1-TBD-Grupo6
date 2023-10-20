@@ -5,6 +5,8 @@ import com.Grupo6.Lab1.services.EmeHabilidadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class EmeHabilidadController {
 
@@ -12,18 +14,18 @@ public class EmeHabilidadController {
     private EmeHabilidadService emeHabilidadService;
 
     @PostMapping("/crearEmeHabilidad")
-    public void crearEmeHa(@RequestBody EmeHabilidad emeHabilidad){
-        emeHabilidadService.crearEmeHabilidad(emeHabilidad);
+    public EmeHabilidad crearEmeHa(@RequestBody EmeHabilidad emeHabilidad){
+        return emeHabilidadService.crearEmeHabilidad(emeHabilidad);
     }
 
     @PutMapping("/actualizarEmeHabilidad/{id}")
-    public void actualizarEmeHa(@RequestBody EmeHabilidad emeHabilidad, @PathVariable Long id){
-        emeHabilidadService.actualizarEmeHabilidad(emeHabilidad, id);
+    public String actualizarEmeHa(@RequestBody EmeHabilidad emeHabilidad, @PathVariable Long id){
+        return emeHabilidadService.actualizarEmeHabilidad(emeHabilidad, id);
     }
 
     @GetMapping("/verEmeHabilidad")
-    public void mostrarEmeHa(){
-        emeHabilidadService.verEmeHabilidad();
+    public List<EmeHabilidad> mostrarEmeHa(){
+        return emeHabilidadService.verEmeHabilidad();
     }
 
     @DeleteMapping("/borrarEmeHabilidad/{id}")

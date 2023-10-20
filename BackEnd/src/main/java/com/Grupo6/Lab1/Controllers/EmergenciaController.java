@@ -5,6 +5,8 @@ import com.Grupo6.Lab1.services.EmergenciaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class EmergenciaController {
 
@@ -12,19 +14,15 @@ public class EmergenciaController {
     private EmergenciaService emergenciaService;
 
     @PostMapping("/crearEmergencia")
-    public void crearEmergencia(@RequestBody Emergencia emergencia){
-        emergenciaService.crearEmergencia(emergencia);
-    }
+    public Emergencia crearEmergencia(@RequestBody Emergencia emergencia){return emergenciaService.crearEmergencia(emergencia);}
 
     @PutMapping("/actualizarEmergencia/{id}")
-    public void actualizarEmergencia(@RequestBody Emergencia emergencia, @PathVariable Long id){
-        emergenciaService.actualizarEmergencia(emergencia, id);
+    public String actualizarEmergencia(@RequestBody Emergencia emergencia, @PathVariable Long id){
+        return emergenciaService.actualizarEmergencia(emergencia, id);
     }
 
     @GetMapping("/verEmergencia")
-    public void mostrarEmergencia(){
-        emergenciaService.verEmergencia();
-    }
+    public List<Emergencia> mostrarEmergencia(){return emergenciaService.verEmergencia();}
 
     @DeleteMapping("/borrarEmergencia/{id}")
     public void borrarEmergencia(@PathVariable Long id){emergenciaService.borrarEmergencia(id);}
