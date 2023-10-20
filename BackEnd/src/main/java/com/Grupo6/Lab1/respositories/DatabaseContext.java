@@ -8,13 +8,17 @@ import org.sql2o.Sql2o;
 @Configuration
 public class DatabaseContext {
 
-    @Value("jdbc:postgresql://localhost:5432/tbd")
+    @Value("jdbc:postgresql://localhost:5432/tbd2")
     private String dbUrl;
 
     @Value("postgres")
     private String dbUser;
 
+<<<<<<< HEAD
     @Value("psw123")
+=======
+    @Value("64959")
+>>>>>>> main
     private String dbPass;
 
     @Bean
