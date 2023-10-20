@@ -68,6 +68,19 @@ public class VoluntarioHabilidadRepositoryImp implements VoluntarioHabilidadRepo
     }
 
     @Override
+    public void delete(Long idVoluntario, Long idHabilidad) {
+        try{
+            Connection conn = sql2o.open();
+            conn.createQuery("DELETE FROM VoluntarioHabilidad WHERE idVoluntario = :idVoluntario AND idHabilidad = :idHabilidad")
+                    .addParameter("idVoluntario", idVoluntario)
+                    .addParameter("idHabilidad", idHabilidad)
+                    .executeUpdate();
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Override
     public List<VoluntarioHabilidad> getHabilidades(Long id) {
         try (Connection conn = sql2o.open()) {
             return conn.createQuery("SELECT * FROM VoluntarioHabilidad WHERE idVoluntario = :id")

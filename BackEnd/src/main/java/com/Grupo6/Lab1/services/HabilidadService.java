@@ -24,4 +24,9 @@ public class HabilidadService {
     public List<Habilidad> obtenerHabilidades(Long idVoluntario) {
         return habilidadRepository.obtenerHabilidadesdelVoluntario(idVoluntario);
     }
+
+
+    public Habilidad getHabilidad(Long idHabilidad) {
+        return habilidadRepository.getHabilidad(idHabilidad);
+    }
 }

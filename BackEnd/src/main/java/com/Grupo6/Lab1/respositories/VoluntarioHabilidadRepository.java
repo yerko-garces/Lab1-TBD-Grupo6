@@ -12,5 +12,7 @@ public interface VoluntarioHabilidadRepository {
 
     void delete(Long idVoluntarioHabilidad);
 
+    void delete(Long idVoluntario, Long idHabilidad);
+
     List<VoluntarioHabilidad> getHabilidades(Long id);
 }

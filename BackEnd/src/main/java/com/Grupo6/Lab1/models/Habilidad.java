@@ -24,4 +24,11 @@ public class Habilidad {
     public void setNombreHabilidad(String nombreHabilidad) {
         this.nombreHabilidad = nombreHabilidad;
     }
+
+    @Override
+    public String toString() {
+        return "Habilidad{" +
+                "idHabilidad=" + idHabilidad +
+                ", nombreHabilidad='" + nombreHabilidad;
+    }
 }

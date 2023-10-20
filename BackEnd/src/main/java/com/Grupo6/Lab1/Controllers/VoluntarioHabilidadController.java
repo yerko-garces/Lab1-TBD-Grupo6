@@ -1,10 +1,14 @@
 package com.Grupo6.Lab1.Controllers;
 
+import com.Grupo6.Lab1.models.Habilidad;
 import com.Grupo6.Lab1.models.VoluntarioHabilidad;
 import com.Grupo6.Lab1.services.VoluntarioHabilidadService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
+
+
 import java.util.List;
 
 @RestController
@@ -12,8 +16,12 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:5173")
 public class VoluntarioHabilidadController {
 
+    private final VoluntarioHabilidadService voluntarioHabilidadService;
+
     @Autowired
-    private VoluntarioHabilidadService voluntarioHabilidadService;
+    public VoluntarioHabilidadController(VoluntarioHabilidadService voluntarioHabilidadService) {
+        this.voluntarioHabilidadService = voluntarioHabilidadService;
+    }
 
     @PostMapping("/crearVoluntarioHabilidad")
     public VoluntarioHabilidad crearVoluntarioHabilidad(@RequestBody VoluntarioHabilidad voluntarioHabilidad) {
@@ -37,9 +45,24 @@ public class VoluntarioHabilidadController {
         voluntarioHabilidadService.deleteVoluntarioHabilidad(id);
     }
 
+    //obtiene las habilidades que ya tiene el voluntario
     @GetMapping("/getHabilidadesVoluntario/{id}")
-    public List<VoluntarioHabilidad> getHabilidades(@PathVariable Long id) {
+    public List<Habilidad> getHabilidades(@PathVariable Long id) {
         System.out.println("el id:"+    id);
-        return voluntarioHabilidadService.getHabilidades(id);
+        return voluntarioHabilidadService.getHabilidadesVoluntario(id);
     }
+
+    @PostMapping("/actualizarHabilidadesVoluntario/{id}")
+    public ResponseEntity<String> actualizar(@PathVariable Long id,@RequestBody List<List<Habilidad>> data) {
+
+        List<Habilidad> listaOriginal = data.get(0);
+        List<Habilidad> listaNueva = data.get(1);
+
+        System.out.println("actualizar");
+        voluntarioHabilidadService.actualizar2(id, listaOriginal, listaNueva);
+
+        return ResponseEntity.ok("Actualización exitosa");
+    }
+
+
 }

@@ -14,4 +14,6 @@ public interface HabilidadRepository {
     public void delete(Long idHabilidad);
 
     public List<Habilidad> obtenerHabilidadesdelVoluntario(Long idVoluntario);
+
+    Habilidad getHabilidad(Long idHabilidad);
 }

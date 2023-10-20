@@ -5,8 +5,7 @@ public class VoluntarioHabilidad {
     private Long idVoluntario;
     private Long idHabilidad;
 
-    public VoluntarioHabilidad(Long idVoluntarioHabilidad, Long idVoluntario, Long idHabilidad) {
-        this.idVoluntarioHabilidad = idVoluntarioHabilidad;
+    public VoluntarioHabilidad(Long idVoluntario, Long idHabilidad) {
         this.idVoluntario = idVoluntario;
         this.idHabilidad = idHabilidad;
     }
