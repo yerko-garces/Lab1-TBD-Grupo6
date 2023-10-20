@@ -7,9 +7,10 @@
           <h1 class="titulo">Datos de usuario</h1>
           <div class="content">
             <form>
-              <v-text-field v-model="useridHabilidad" label="Nombre del Usuario" required></v-text-field>
-                <v-select chips multiple label="Habilidades" :items="items" :item-props="itemProps"></v-select>
-                <v-btn class="button" color="black" variant="outlined">Enviar</v-btn>
+                <v-select chips multiple v-model="seleccion" label="Habilidades" :items="items" :item-props="itemProps" ></v-select>
+              <v-select chips multiple v-model="lista2" label="Habilidades" :items="lista1" :item-props="itemProps" ></v-select>
+
+              <v-btn class="button" @click="actualizar" color="black" variant="outlined">Enviar</v-btn>
             </form>
           </div>
         </div>
@@ -28,16 +29,31 @@ export default {
   },
   data() {
     return {
-      useridHabilidad: '',
-      selectedFrutas: [],
-      items: [],
+      seleccion: [], //los seleccionados que el usuario eligio para añadir
+      items: [],  // son todas las habilidades disponibles para elegir
+      lista1: [], // son las habilidades que el usuario ya tiene
+      lista2: [], // habilidades que el usuario va a quitarse
+      voluntario:"",
     };
   },
   mounted(){
-    this.getHabilidades();
+    this.getHabilidades(); //cambiar por obtener las no seleccionadas
     this.getVol();
+    this.getSeleccionados(); //obtener habilidades ya escogidas
   },
   methods: {
+    async getSeleccionados(){
+      try{
+        const res = await axios.get(
+          "http://localhost:8090/voluntarioHabilidad/getHabilidadesVoluntario/" + this.voluntario.idVoluntario
+        );
+        this.lista1 = res.data;
+        console.log(this.seleccion)
+        console.log(this.items)
+      }catch{
+        console.log("catch")
+      }
+    },
     async getHabilidades(){
         try{
             const res = await axios.get(
@@ -48,10 +64,23 @@ export default {
             console.log("catch")
         }
     },
-    submitForm() {
-      console.log('Nombre del Usuario:', this.useridHabilidad);
-      console.log('Frutas seleccionadas:', this.selectedFrutas);
+    actualizar(){
+      const idVoluntario = this.voluntario.idVoluntario;
+      this.seleccion.forEach(async element => {
+        try{
+          const res = await axios.post(
+            "http://localhost:8090/voluntarioHabilidad/crearVoluntarioHabilidad",
+            {
+              idVoluntario: idVoluntario,
+              idHabilidad: element.id_habilidad,
+            }
+          );
+        }catch{
+          console.log("catch")
+        }
+      });
     },
+
     itemProps (item) {
         return {
           title: item.nombreHabilidad,
@@ -59,8 +88,7 @@ export default {
         }
     },
     getVol(){
-        this.voluntario = localStorage.getItem("voluntario");
-        console.log(this.voluntario);
+        this.voluntario = JSON.parse(localStorage.getItem("voluntario"));
     },
     }
 };

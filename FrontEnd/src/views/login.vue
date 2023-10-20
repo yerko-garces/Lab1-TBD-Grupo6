@@ -25,9 +25,11 @@ export default {
         if (response.status === 200) {
           
           const token = response.data.token;
+          const voluntario = response.data.voluntario
           console.log(response.data.token)
+          console.log(response.data.voluntario)
           localStorage.setItem("token", token);
-          localStorage.setItem("voluntario",response.data.voluntario)
+          localStorage.setItem("voluntario",JSON.stringify(voluntario))
           this.$router.push("/about");
         }
       } catch (error) {

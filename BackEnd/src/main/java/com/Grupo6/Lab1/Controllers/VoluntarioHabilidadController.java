@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/voluntarioHabilidad")
+@CrossOrigin(origins = "http://localhost:5173")
 public class VoluntarioHabilidadController {
 
     @Autowired
@@ -15,6 +17,8 @@ public class VoluntarioHabilidadController {
 
     @PostMapping("/crearVoluntarioHabilidad")
     public VoluntarioHabilidad crearVoluntarioHabilidad(@RequestBody VoluntarioHabilidad voluntarioHabilidad) {
+        System.out.println(voluntarioHabilidad.getIdHabilidad());
+        System.out.println(voluntarioHabilidad.getIdVoluntario());
         return voluntarioHabilidadService.createVoluntarioHabilidad(voluntarioHabilidad);
     }
 
@@ -31,5 +35,11 @@ public class VoluntarioHabilidadController {
     @DeleteMapping("/borrarVoluntarioHabilidad/{id}")
     public void borrarVoluntarioHabilidad(@PathVariable Long id) {
         voluntarioHabilidadService.deleteVoluntarioHabilidad(id);
+    }
+
+    @GetMapping("/getHabilidadesVoluntario/{id}")
+    public List<VoluntarioHabilidad> getHabilidades(@PathVariable Long id) {
+        System.out.println("el id:"+    id);
+        return voluntarioHabilidadService.getHabilidades(id);
     }
 }

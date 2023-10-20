@@ -66,4 +66,16 @@ public class VoluntarioHabilidadRepositoryImp implements VoluntarioHabilidadRepo
             System.out.println(e.getMessage());
         }
     }
+
+    @Override
+    public List<VoluntarioHabilidad> getHabilidades(Long id) {
+        try (Connection conn = sql2o.open()) {
+            return conn.createQuery("SELECT * FROM VoluntarioHabilidad WHERE idVoluntario = :id")
+                    .addParameter("id", id)
+                    .executeAndFetch(VoluntarioHabilidad.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
 }
