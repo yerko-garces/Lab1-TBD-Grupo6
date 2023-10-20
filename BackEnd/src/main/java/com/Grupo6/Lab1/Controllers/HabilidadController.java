@@ -7,7 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
-@Service
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
+@RestController
+@CrossOrigin(origins = "http://localhost:5173")
+@RequestMapping("/habilidad")
 public class HabilidadController {
 
     @Autowired
@@ -23,8 +28,10 @@ public class HabilidadController {
         habilidadService.actualizarHabilidad(habilidad, id);
     }
 
-    @GetMapping("/verHabilidad")
-    public void mostrarHabilidad(){habilidadService.verHabilidad();}
+    @GetMapping("/get")
+    public ArrayList<Habilidad> mostrarHabilidad(){
+        return (ArrayList<Habilidad>) habilidadService.verHabilidad();
+    }
 
     @DeleteMapping("/borrarEmergencia/{id}")
     public void borrarHabilidad(@PathVariable Long id){habilidadService.borrarHabilidad(id);}

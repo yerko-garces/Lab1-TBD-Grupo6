@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS Voluntario(
 
 CREATE TABLE IF NOT EXISTS Habilidad(
     idHabilidad serial NOT null,
-    nombre_habilidad text,
+    nombreHabilidad text,
     PRIMARY KEY (idHabilidad)
 );
 
