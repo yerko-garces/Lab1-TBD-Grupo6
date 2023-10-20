@@ -27,7 +27,7 @@
     </v-app-bar>
     <v-navigation-drawer app>
     <v-list>
-      <v-list-item to="/..." class="borde">
+      <v-list-item to="/habilities" class="borde">
         <div class="center-text">Mi Perfil</div>
       </v-list-item>
       <v-list-item to="/..." class="borde">

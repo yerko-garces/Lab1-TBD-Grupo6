@@ -11,4 +11,6 @@ public interface VoluntarioHabilidadRepository {
     String update(VoluntarioHabilidad voluntarioHabilidad, Long idVoluntarioHabilidad);
 
     void delete(Long idVoluntarioHabilidad);
+
+    List<VoluntarioHabilidad> getHabilidades(Long id);
 }

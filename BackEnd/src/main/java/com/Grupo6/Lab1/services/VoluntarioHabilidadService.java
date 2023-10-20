@@ -27,4 +27,8 @@ public class VoluntarioHabilidadService {
     public void deleteVoluntarioHabilidad(Long idVoluntarioHabilidad) {
         voluntarioHabilidadRepository.delete(idVoluntarioHabilidad);
     }
+
+    public List<VoluntarioHabilidad> getHabilidades(Long id) {
+        return voluntarioHabilidadRepository.getHabilidades(id);
+    }
 }
