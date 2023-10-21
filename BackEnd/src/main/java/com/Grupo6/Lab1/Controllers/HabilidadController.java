@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
+import static com.Grupo6.Lab1.Security.JwtUtil.validarToken;
+
 @RestController
 @CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/habilidad")
@@ -28,7 +30,11 @@ public class HabilidadController {
     }
 
     @GetMapping("/get")
-    public ArrayList<Habilidad> mostrarHabilidad(){
+    public ArrayList<Habilidad> mostrarHabilidad(@RequestHeader("Authorization") String token){
+        if (validarToken(token)){
+            return null;
+        }
+
         return (ArrayList<Habilidad>) habilidadService.verHabilidad();
     }
 

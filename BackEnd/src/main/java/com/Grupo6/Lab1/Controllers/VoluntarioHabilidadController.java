@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.Grupo6.Lab1.Security.JwtUtil.validarToken;
+
 @RestController
 @RequestMapping("/voluntarioHabilidad")
 @CrossOrigin(origins = "http://localhost:5173")
@@ -47,14 +49,21 @@ public class VoluntarioHabilidadController {
 
     //obtiene las habilidades que ya tiene el voluntario
     @GetMapping("/getHabilidadesVoluntario/{id}")
-    public List<Habilidad> getHabilidades(@PathVariable Long id) {
+    public List<Habilidad> getHabilidades(@RequestHeader("Authorization") String token, @PathVariable Long id) {
+        if(token == null || validarToken(token)){
+            return null;
+        }
         System.out.println("el id:"+    id);
         return voluntarioHabilidadService.getHabilidadesVoluntario(id);
     }
 
     @PostMapping("/actualizarHabilidadesVoluntario/{id}")
-    public ResponseEntity<String> actualizar(@PathVariable Long id,@RequestBody List<List<Habilidad>> data) {
-
+    public ResponseEntity<String> actualizar(@RequestHeader("Authorization") String token, @PathVariable Long id,@RequestBody List<List<Habilidad>> data) {
+        System.out.println(token);
+        if(token == null || validarToken(token)){
+            System.out.println("token invalido");
+            return ResponseEntity.badRequest().build();
+        }
         List<Habilidad> listaOriginal = data.get(0);
         List<Habilidad> listaNueva = data.get(1);
 

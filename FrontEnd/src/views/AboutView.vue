@@ -13,10 +13,8 @@
             width="300"
             height="300"
           />
-          <!--<p class="titulo">Este es un servicio que permite gestionar de manera eficiente y efectiva las distintas catástrofes</p>-->
           <br>
           <ul>
-            <!-- <p class="descripcion">Este es un servicio que permite gestionar de manera eficiente y efectiva las distintas catástrofes.</p>-->
           </ul>
           <br>
           <v-btn class="button" color="black" variant="outlined" to="/.">Botón 1</v-btn>
