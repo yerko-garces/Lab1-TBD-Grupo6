@@ -26,4 +26,19 @@ public class LogsRepositoryImp implements LogsRepository{
             return null;
         }
     }
+
+    public List<String> getReportes(Long idVoluntario){
+        try(Connection conn = sql2o.open()) {
+            return conn.createQuery(
+                    "SELECT count(v.idvoluntario)\n" +
+                    "FROM voluntario AS v \n" +
+                    "INNER JOIN logs AS l\n" +
+                    "ON l.idusuario = :idVoluntario \n" +
+                    "group by v.idvoluntario").addParameter("idVoluntario", idVoluntario)
+                    .executeAndFetch(String.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
 }

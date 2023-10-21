@@ -50,6 +50,6 @@ public class voluntarioController {
 
     @GetMapping("voluntarios")
     public List<Voluntario> voluntarios(){
-        return voluntarioService.getVoluntario();
+        return voluntarioService.getVoluntarios();
     }
 }

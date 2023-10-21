@@ -10,19 +10,11 @@ RETURNS TRIGGER AS
 $$
 BEGIN
     IF TG_OP = 'INSERT' THEN
-<<<<<<< HEAD
         INSERT INTO logs (idUsuario, descripcion) VALUES (1,'Nueva inserción realizada');
     ELSIF TG_OP = 'UPDATE' THEN
         INSERT INTO logs (idUsuario, descripcion) VALUES (1,'Actualización realizada');
     ELSIF TG_OP = 'DELETE' THEN
         INSERT INTO logs (idUsuario, descripcion) VALUES (1,'Eliminación realizada');
-=======
-        INSERT INTO logs (usuario_id, descripcion) VALUES (NEW.idvoluntario, 'Se ha insertado en voluntario');
-    ELSIF TG_OP = 'UPDATE' THEN
-        INSERT INTO logs (usuario_id, descripcion) VALUES (NEW.idvoluntario, 'Se ha actualizado en voluntario');
-    ELSIF TG_OP = 'DELETE' THEN
-        INSERT INTO logs (usuario_id, descripcion) VALUES (OLD.idvoluntario, 'Se ha eliminado en voluntario');
->>>>>>> main
     END IF;
     
     RETURN NEW;

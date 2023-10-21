@@ -13,7 +13,7 @@ public class VoluntarioService {
 
     @Autowired
     private VoluntarioRepository voluntarioRepository;
-    public List<Voluntario> getVoluntario(){
+    public List<Voluntario> getVoluntarios(){
         return voluntarioRepository.getVoluntarios();
     }
 

@@ -16,4 +16,10 @@ public class LogsController {
 
     @GetMapping("/verLogs")
     public List<Logs> mostrarLogs(){return logsService.entregarLogs();}
+
+    @GetMapping("/calcularLogs")
+    public List<List<String>> calcularLogs(){
+        List<List<String>> datos = logsService.entregaReporteEID();
+        return datos;
+    }
 }
