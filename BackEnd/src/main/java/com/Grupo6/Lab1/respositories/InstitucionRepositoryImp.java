@@ -1,7 +1,9 @@
 package com.Grupo6.Lab1.respositories;
 
 import com.Grupo6.Lab1.models.Institucion;
+import com.Grupo6.Lab1.models.Voluntario;
 import com.Grupo6.Lab1.respositories.InstitucionRepository;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
@@ -67,6 +69,27 @@ public class InstitucionRepositoryImp implements InstitucionRepository {
                     .executeUpdate();
         } catch (Exception e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    @Override
+    public Institucion getInstitucionByEmail(String email) {
+        try(Connection conn = sql2o.open()){
+            return conn.createQuery("SELECT * FROM institucion WHERE emailinstitucion = :emailInstitucion")
+                    .addParameter("emailInstitucion", email)
+                    .executeAndFetchFirst(Institucion.class);
+        }
+    }
+
+    @Override
+    public void registrarInstitucion(Institucion institucion) {
+        String contra = BCrypt.hashpw(institucion.getContraseniaInstitucion(), BCrypt.gensalt());
+        try(Connection conn = sql2o.open()){
+            conn.createQuery("INSERT INTO voluntario (emailInstitucion, nombreInstitucion, contraseniaInstitucion) VALUES (:email, :nombre_completo, :password)")
+                    .addParameter("nombre_completo", institucion.getNombreInstitucion())
+                    .addParameter("email", institucion.getCorreoInstitucion())
+                    .addParameter("password", contra)
+                    .executeUpdate();
         }
     }
 }

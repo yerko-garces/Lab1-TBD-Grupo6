@@ -16,7 +16,7 @@
             </thead>
             <tbody>
               <!-- donde se tomaría la cantida de reportes -->
-              <tr  v-for="tarea in historial"  :key="tarea.id_tarea">
+              <tr  v-for="algo in historial"  :key="tarea.id_tarea">
                 <td v-if="esFiltrado(tarea)">{{ tarea.titulo  }}</td>
                 <td v-if="esFiltrado(tarea)">{{ tarea.descripcion }}</td>
                 <td v-if="esFiltrado(tarea)">{{ mostrarStatus(tarea.status) }}</td>
