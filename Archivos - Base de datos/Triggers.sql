@@ -10,11 +10,19 @@ RETURNS TRIGGER AS
 $$
 BEGIN
     IF TG_OP = 'INSERT' THEN
+<<<<<<< Updated upstream
         INSERT INTO logs (idUsuario, descripcion) VALUES (1,'Nueva inserción realizada');
+=======
+        INSERT INTO logs (idUsuario, descripcion) VALUES (NEW.idvoluntario,'Nueva inserción realizada');
+>>>>>>> Stashed changes
     ELSIF TG_OP = 'UPDATE' THEN
-        INSERT INTO logs (idUsuario, descripcion) VALUES (1,'Actualización realizada');
+        INSERT INTO logs (idUsuario, descripcion) VALUES (NEW.idvoluntario,'Actualización realizada');
     ELSIF TG_OP = 'DELETE' THEN
+<<<<<<< Updated upstream
         INSERT INTO logs (idUsuario, descripcion) VALUES (1,'Eliminación realizada');
+=======
+        INSERT INTO logs (idUsuario, descripcion) VALUES (OLD.idvoluntario,'Eliminación realizada');
+>>>>>>> Stashed changes
     END IF;
     
     RETURN NEW;

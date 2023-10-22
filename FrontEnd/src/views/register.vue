@@ -35,7 +35,7 @@ export default {
         this.$swal({
           icon: "error",
           title: "Error",
-          text: "Error al registrar al ususario",
+          text: "Error al registrarse",
         });
       }
     },

@@ -15,6 +15,6 @@ public interface InstitucionRepository {
 
     public void delete(Long idInstitucion);
 
-    Institucion getInstitucionByEmail(String email);
+    Institucion getInstitucionByEmail(String correo);
     public void registrarInstitucion(Institucion institucion);
 }

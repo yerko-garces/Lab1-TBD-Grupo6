@@ -13,11 +13,13 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@RequestMapping("/institucion")
+@CrossOrigin(origins = "*")
 public class InstitucionController {
     @Autowired
     private InstitucionService institucionService;
 
-    @PostMapping("/loginInstitucion1")
+    @PostMapping("/login")
     public ResponseEntity<Map<String, Object>> login(@RequestBody Institucion institucion){
         System.out.println(institucion);
         if (institucion.getCorreoInstitucion() == null){
@@ -35,7 +37,7 @@ public class InstitucionController {
         return ResponseEntity.badRequest().build();
     }
 
-    @PostMapping("/registerInstitucion")
+    @PostMapping("/register")
     public ResponseEntity<String> registrarInstitucion(@RequestBody Institucion institucion){
         System.out.println(institucion);
         if (institucion.getCorreoInstitucion() == null || institucion.getCorreoInstitucion().isEmpty()){
