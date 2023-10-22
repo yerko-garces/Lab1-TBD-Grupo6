@@ -5,7 +5,7 @@ export default {
   name: "register",
   data() {
     return {
-      emailVoluntario:"",
+      correoInstitucion:"",
       nombre:"",
       password: "",
       error: "",
@@ -17,11 +17,11 @@ export default {
       try {
         const response = await axios({
           method: "POST",
-          url: "http://localhost:8090/registerInstitucion",
+          url: "http://localhost:8090/institucion/register",
           data: {
-            emailVoluntario: this.emailVoluntario,
+            correoInstitucion: this.correoInstitucion,
             contraseniaVoluntario: this.password,
-            nombreCompletoVoluntario: this.nombre,
+            nombreInstitucion: this.nombre,
           },
         });
 
@@ -32,7 +32,7 @@ export default {
         this.$swal({
           icon: "error",
           title: "Error",
-          text: "Error al registrar al ususario",
+          text: "Error al registrar la institución: " + error.response.data 
         });
       }
     },
@@ -52,9 +52,9 @@ export default {
       <v-responsive class="mx-auto" max-width="400">
         <v-text-field
           label="Usuario"
-          placeholder="Introduzca su email de usuario"
+          placeholder="Introduzca su email de Institucion"
           type="input"
-          v-model="emailVoluntario"
+          v-model="correoInstitucion"
         ></v-text-field>
       </v-responsive>
 

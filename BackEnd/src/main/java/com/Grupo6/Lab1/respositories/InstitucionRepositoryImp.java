@@ -1,8 +1,6 @@
 package com.Grupo6.Lab1.respositories;
 
 import com.Grupo6.Lab1.models.Institucion;
-import com.Grupo6.Lab1.models.Voluntario;
-import com.Grupo6.Lab1.respositories.InstitucionRepository;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -47,7 +45,7 @@ public class InstitucionRepositoryImp implements InstitucionRepository {
     @Override
     public String update(Institucion institucion, Long idInstitucion) {
         try (Connection conn = sql2o.open()) {
-            String updateSql = "UPDATE Institucion SET nombreInstitucion=:nombreInstitucion, correoInstitucion=:correoInstitucion, contraseniaInstitucion=:contraseniaInstitucion WHERE idInstitucion=:idInstitucion";
+            String updateSql = "UPDATE institucion SET nombreInstitucion=:nombreInstitucion, correoInstitucion=:correoInstitucion, contraseniaInstitucion=:contraseniaInstitucion WHERE idInstitucion=:idInstitucion";
             conn.createQuery(updateSql)
                     .addParameter("idInstitucion", idInstitucion)
                     .addParameter("nombreInstitucion", institucion.getNombreInstitucion())
@@ -64,7 +62,7 @@ public class InstitucionRepositoryImp implements InstitucionRepository {
     @Override
     public void delete(Long idInstitucion) {
         try (Connection conn = sql2o.open()) {
-            conn.createQuery("DELETE FROM Institucion WHERE idInstitucion = :idInstitucion")
+            conn.createQuery("DELETE FROM institucion WHERE idInstitucion = :idInstitucion")
                     .addParameter("idInstitucion", idInstitucion)
                     .executeUpdate();
         } catch (Exception e) {
@@ -73,10 +71,10 @@ public class InstitucionRepositoryImp implements InstitucionRepository {
     }
 
     @Override
-    public Institucion getInstitucionByEmail(String email) {
+    public Institucion getInstitucionByEmail(String correoInstitucion) {
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("SELECT * FROM institucion WHERE emailinstitucion = :emailInstitucion")
-                    .addParameter("emailInstitucion", email)
+            return conn.createQuery("SELECT * FROM institucion WHERE correoInstitucion = :correoInstitucion")
+                    .addParameter("correoInstitucion", correoInstitucion)
                     .executeAndFetchFirst(Institucion.class);
         }
     }
@@ -85,9 +83,9 @@ public class InstitucionRepositoryImp implements InstitucionRepository {
     public void registrarInstitucion(Institucion institucion) {
         String contra = BCrypt.hashpw(institucion.getContraseniaInstitucion(), BCrypt.gensalt());
         try(Connection conn = sql2o.open()){
-            conn.createQuery("INSERT INTO voluntario (emailInstitucion, nombreInstitucion, contraseniaInstitucion) VALUES (:email, :nombre_completo, :password)")
-                    .addParameter("nombre_completo", institucion.getNombreInstitucion())
-                    .addParameter("email", institucion.getCorreoInstitucion())
+            conn.createQuery("INSERT INTO institucion (correoInstitucion, nombreInstitucion, contraseniaInstitucion) VALUES (:correoInstitucion, :nombreInstitucion, :password)")
+                    .addParameter("nombreInstitucion", institucion.getNombreInstitucion())
+                    .addParameter("correoInstitucion", institucion.getCorreoInstitucion())
                     .addParameter("password", contra)
                     .executeUpdate();
         }
