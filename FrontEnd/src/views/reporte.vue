@@ -1,11 +1,8 @@
 <template>
     <v-layout class="rounded rounded-md centered-layout">
-      <Header />
       <div class="centered-message">
         
         <h1 class="titulo">Reportes</h1>
-        
-        
         <div class="tabla-container">
           <table class="tabla">
             <thead>
@@ -14,20 +11,26 @@
                 <th>Cantidad de registros</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody>              
               <!-- donde se tomaría la cantida de reportes -->
-              <tr  v-for="algo in historial"  :key="tarea.id_tarea">
-                <td v-if="esFiltrado(tarea)">{{ tarea.titulo  }}</td>
-                <td v-if="esFiltrado(tarea)">{{ tarea.descripcion }}</td>
-                <td v-if="esFiltrado(tarea)">{{ mostrarStatus(tarea.status) }}</td>
-                <td v-if="esFiltrado(tarea)">
-                </td>
+              <tr  v-for="(entrada, index) in historial"  :key="index">
+                <td style="text-align: center;">{{ entrada.email  }}</td>
+                <td style="text-align: center;">{{ entrada.cantidadReportes }}</td>                                
               </tr>
             </tbody>
           </table>
         </div>
         <div class="input-container"></div>
       </div>
+      <v-btn
+        class="mb-8"
+        color="purple"
+        size="large"
+        variant="tonal"
+        to="/about"
+      >
+        Volver al menu de inicio 
+      </v-btn>
     </v-layout>
   </template>
   
@@ -89,10 +92,10 @@
   
   </style>
   
-  <script>
+  <script> 
   import axios from 'axios';
   import Header from "../components/Header.vue";
-  
+
   export default {
     components: {
       Header,
@@ -108,10 +111,11 @@
     },
     methods: {
       cargarHistorial() {
-        const url = `http://localhost:8090/logs/calcularLogs`;
+        const url = `http://localhost:8090/calcularLogs`;
         axios.get(url)
           .then(response => {
             this.historial = response.data;
+            console.log(this.historial);
           })
           .catch(error => {
             console.error('Error al cargar tareas:', error);

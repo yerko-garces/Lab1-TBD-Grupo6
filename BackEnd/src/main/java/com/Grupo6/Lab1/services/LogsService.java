@@ -1,9 +1,9 @@
 package com.Grupo6.Lab1.services;
 
+import com.Grupo6.Lab1.DAO.EntradaReporteEID;
 import com.Grupo6.Lab1.models.Logs;
 import com.Grupo6.Lab1.models.Voluntario;
 import com.Grupo6.Lab1.respositories.LogsRepository;
-import com.Grupo6.Lab1.respositories.VoluntarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,19 +21,21 @@ public class LogsService {
 
     public List<Logs> entregarLogs(){return logsRepository.getAll();}
 
-    public List<List<String>> entregaReporteEID(){
-
+    public List<EntradaReporteEID> entregaReporteEID(){
         List<Voluntario> voluntarios = voluntarioService.getVoluntarios();
-        List<List<String>> emailYReportes = new ArrayList<List<String>>();
 
-        for (Voluntario voluntario: voluntarios) {
-            List<String> datos = new ArrayList<String>();
-            List<String> cantidadReportesV = logsRepository.getReportes(voluntario.getIdVoluntario());
-            datos.add(voluntario.getEmailVoluntario());
-            datos.add(cantidadReportesV.get(0));
+        List<EntradaReporteEID> entradasReporte = new ArrayList<EntradaReporteEID>();
 
-            emailYReportes.add(datos);
+        for (Voluntario voluntario : voluntarios) {
+            EntradaReporteEID entradaReporteEID = new EntradaReporteEID();
+            List<Integer> datos = new ArrayList<Integer>();
+            Integer cantidadReportesV = logsRepository.getReportes(voluntario.getIdVoluntario());
+            entradaReporteEID.setCantidadReportes(cantidadReportesV);
+            entradaReporteEID.setEmail(voluntario.getEmailVoluntario());
+            entradasReporte.add(entradaReporteEID);
         }
-        return emailYReportes;}
+
+        return entradasReporte;
+    }
 
 }

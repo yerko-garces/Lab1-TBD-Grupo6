@@ -8,5 +8,5 @@ import java.util.List;
 public interface LogsRepository {
 
     public List<Logs> getAll();
-    public List<String> getReportes(Long idVoluntario);
+    public Integer getReportes(Long idVoluntario);
 }

@@ -1,5 +1,6 @@
 package com.Grupo6.Lab1.Controllers;
 
+import com.Grupo6.Lab1.DAO.EntradaReporteEID;
 import com.Grupo6.Lab1.models.Logs;
 import com.Grupo6.Lab1.services.LogsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class LogsController {
     public List<Logs> mostrarLogs(){return logsService.entregarLogs();}
 
     @GetMapping("/calcularLogs")
-    public List<List<String>> calcularLogs(){
+    public List<EntradaReporteEID> calcularLogs(){
         return logsService.entregaReporteEID();
     }
 }
