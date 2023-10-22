@@ -27,7 +27,7 @@
   }
   
   .tabla {
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
     border-collapse: collapse;
     border-radius: 10px;
@@ -92,7 +92,7 @@
       <Header />
       <div class="centered-message">
         <h1>
-          <img alt="Vue logo" class="logo" src="@/assets/logo_sai_usach_4.png" width="300" height="150" />
+          <img alt="Vue logo" class="logo" src="@/assets/logo_sai_usach_4.png" width="100" height="100" />
         </h1>
         <p class="titulo">Emergencia</p>
         <div class="tabla-container">
@@ -112,6 +112,16 @@
                 <v-btn block class="mb-1" color="green" background-color="#394049" @click="verPrerequisitos(emergencia.idEmergencia)">
                   <div>Aceptar tarea</div>
                 </v-btn>
+                <router-link to="/about">
+                <v-btn
+                  class="mb-8"
+                  color="blue"
+                  size="large"
+                  variant="tonal"
+                >
+                  VOLVER AL INICIO
+                </v-btn>
+              </router-link>
               </td>
               </tr> 
             </tbody>
