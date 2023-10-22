@@ -15,7 +15,7 @@ import static com.Grupo6.Lab1.Security.JwtUtil.validarToken;
 
 @RestController
 @RequestMapping("/voluntarioHabilidad")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "*")
 public class VoluntarioHabilidadController {
 
     private final VoluntarioHabilidadService voluntarioHabilidadService;
@@ -53,6 +53,12 @@ public class VoluntarioHabilidadController {
         if(token == null || validarToken(token)){
             return null;
         }
+        System.out.println("el id:"+    id);
+        return voluntarioHabilidadService.getHabilidadesVoluntario(id);
+    }
+
+    @GetMapping("/getAllHabilidadesVoluntario/{id}")
+    public List<Habilidad> getHabilidadesVol(@PathVariable Long id) {
         System.out.println("el id:"+    id);
         return voluntarioHabilidadService.getHabilidadesVoluntario(id);
     }

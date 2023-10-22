@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import static com.Grupo6.Lab1.Security.JwtUtil.validarToken;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "*")
 @RequestMapping("/habilidad")
 public class HabilidadController {
 
@@ -35,6 +35,10 @@ public class HabilidadController {
             return null;
         }
 
+        return (ArrayList<Habilidad>) habilidadService.verHabilidad();
+    }
+    @GetMapping("/getAll")
+    public ArrayList<Habilidad> mostrarHabilidades(){
         return (ArrayList<Habilidad>) habilidadService.verHabilidad();
     }
 
