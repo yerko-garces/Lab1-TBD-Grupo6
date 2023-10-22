@@ -106,8 +106,11 @@
               <tr v-for="emergencia in historial" :key="emergencia.idEmergencia">
                 <td>{{ emergencia.nombreEmergencia }}</td>
                 <td>
-                <v-btn block class="mb-1" color="green" background-color="#394049" @click="verPrerequisitos(emergencia.idEmergencia)">
+                <v-btn block class="mb-1" color="blue" background-color="#394049" @click="verPrerequisitos(emergencia.idEmergencia)">
                   <div>Ver requisitos</div>
+                </v-btn>
+                <v-btn block class="mb-1" color="green" background-color="#394049" @click="verPrerequisitos(emergencia.idEmergencia)">
+                  <div>Aceptar tarea</div>
                 </v-btn>
               </td>
               </tr> 
