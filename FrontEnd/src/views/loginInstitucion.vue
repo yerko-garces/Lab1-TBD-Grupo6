@@ -45,6 +45,9 @@ export default {
 };
 </script>
 <template>
+  <h3 style="text-align: center; margin-top: 40px;">
+        INSTITUCIÓN
+      </h3>
   <div>
     <v-card
       class="mx-auto pa-12 pb-8"
@@ -53,7 +56,7 @@ export default {
       rounded="lg"
       style="margin-top: 40px"
     >
-      <div class="text-subtitle-1 text-medium-emphasis">Cuenta</div>
+      <div class="text-subtitle-1 text-medium-emphasis">Cuenta Institución</div>
       <v-responsive class="mx-auto" max-width="400">
         <v-text-field
           label="Usuario"

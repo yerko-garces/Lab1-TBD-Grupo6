@@ -45,15 +45,18 @@ export default {
 };
 </script>
 <template>
+  <h3 style="text-align: center; margin-top: 40px;">
+        VOLUNTARIO
+      </h3>
   <div>
     <v-card
       class="mx-auto pa-12 pb-8"
-      elevation="15"
+      elevation="10"
       max-width="500"
       rounded="lg"
       style="margin-top: 40px"
     >
-      <div class="text-subtitle-1 text-medium-emphasis">Cuenta</div>
+      <div class="text-subtitle-1 text-medium-emphasis">Cuenta Voluntario</div>
       <v-responsive class="mx-auto" max-width="400">
         <v-text-field
           label="Usuario"

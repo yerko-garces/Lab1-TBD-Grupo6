@@ -26,7 +26,13 @@ export default {
         });
 
         if (response.status === 200) {
-          this.$router.push("/");
+          this.$swal({ // Muestra la alerta de éxito
+              icon: 'success',
+              title: 'Éxito',
+              text: 'Su perfil de Institución se creó exitosamente',
+          }).then(() => {
+              this.$router.push('/about'); // Redirige al usuario
+          });
         }
       } catch (error) {
         this.$swal({
@@ -40,6 +46,9 @@ export default {
 };
 </script>
 <template>
+  <h3 style="text-align: center; margin-top: 40px;">
+        CREAR CUENTA INSTITUCIÓN
+      </h3>
   <div>
     <v-card
       class="mx-auto pa-12 pb-8"
@@ -48,7 +57,7 @@ export default {
       rounded="lg"
       style="margin-top: 40px"
     >
-      <div class="text-subtitle-1 text-medium-emphasis">Cuenta</div>
+      <div class="text-subtitle-1 text-medium-emphasis">Ingrese los datos:</div>
       <v-responsive class="mx-auto" max-width="400">
         <v-text-field
           label="Usuario"
