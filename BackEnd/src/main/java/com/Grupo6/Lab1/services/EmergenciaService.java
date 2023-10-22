@@ -23,4 +23,9 @@ public class EmergenciaService {
 
     public void borrarEmergencia(Long idEmeHabilidad){
         emergenciaRepository.delete(idEmeHabilidad);}
+
+    public List<String> obtenerPrerequisitos(Long id){
+        List<String> prerequisitos = emergenciaRepository.obtenerPrerequisitos(id);
+        return prerequisitos;
+    }
 }

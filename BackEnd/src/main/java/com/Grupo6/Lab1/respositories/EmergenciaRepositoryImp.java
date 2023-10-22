@@ -63,4 +63,21 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
             System.out.println(e.getMessage());
         }
     }
+
+    @Override
+    public List<String> obtenerPrerequisitos(Long idEmeHabilidad){
+        try (Connection conn = sql2o.open()) {
+            return conn.createQuery("SELECT Ha.nombrehabilidad\n" +
+                            "FROM habilidad AS Ha" +
+                            "INNER JOIN (\n" +
+                            "    SELECT *\n" +
+                            "    FROM emehabilidad AS E\n" +
+                            "    WHERE E.idemergencia = 1\n" +
+                            ") AS tabla1 ON tabla1.idhabilidad = Ha.idhabilidad;")
+                    .executeAndFetch(String.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
 }

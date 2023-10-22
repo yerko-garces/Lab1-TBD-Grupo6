@@ -21,7 +21,6 @@ public class LogsController {
 
     @GetMapping("/calcularLogs")
     public List<List<String>> calcularLogs(){
-        List<List<String>> datos = logsService.entregaReporteEID();
-        return datos;
+        return logsService.entregaReporteEID();
     }
 }

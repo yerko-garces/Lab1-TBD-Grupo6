@@ -11,4 +11,6 @@ public interface EmergenciaRepository {
     public String update(Emergencia emergencia, Long idEmergencia);
 
     public void delete(Long idEmergencia);
+
+    public  List<String> obtenerPrerequisitos(Long idEmergencia);
 }

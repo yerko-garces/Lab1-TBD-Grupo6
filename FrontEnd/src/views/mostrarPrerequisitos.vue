@@ -68,7 +68,7 @@
     },
     methods: {
       cargarCatastrofes() {
-        const url = `http://localhost:8090/emergencia/verEmergencia`;
+        const url = `http://localhost:8090/emergencia/mostrarPrerequisitos/${idEmergencia}`;
         axios.get(url)
           .then(response => {
             console.log('Respuesta del servidor:', response);

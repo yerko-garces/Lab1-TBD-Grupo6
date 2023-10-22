@@ -29,4 +29,9 @@ public class EmergenciaController {
     @DeleteMapping("/borrarEmergencia/{id}")
     public void borrarEmergencia(@PathVariable Long id){emergenciaService.borrarEmergencia(id);}
 
+    @PostMapping("/mostrarPrerequisitos/{id}")
+    public List<String> mostrarPrerequisitos(@RequestBody Long id){
+        return emergenciaService.obtenerPrerequisitos(id);
+    }
+
 }
