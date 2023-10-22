@@ -17,15 +17,14 @@ public class InstitucionService {
 
 
     public boolean login(Institucion institucion){
-        System.out.println("busca voluntario");
         Institucion i = institucionRepository.getInstitucionByEmail(institucion.getCorreoInstitucion());
-        System.out.println("se econtro voluntario");
-        System.out.println(i);
+        System.out.println(i.getContraseniaInstitucion());
+        System.out.println(institucion.getContraseniaInstitucion());
         if(i == null){
             System.out.println("v null");
             return false;
         }
-        return BCrypt.checkpw(institucion.getCorreoInstitucion(), i.getContraseniaInstitucion());
+        return BCrypt.checkpw(institucion.getContraseniaInstitucion(), i.getContraseniaInstitucion());
     }
     public Institucion createInstitucion(Institucion institucion) {
         return institucionRepository.crear(institucion);

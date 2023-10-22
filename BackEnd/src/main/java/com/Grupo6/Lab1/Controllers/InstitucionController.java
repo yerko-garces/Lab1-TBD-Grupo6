@@ -21,16 +21,16 @@ public class InstitucionController {
 
     @PostMapping("/login")
     public ResponseEntity<Map<String, Object>> login(@RequestBody Institucion institucion){
-        System.out.println(institucion);
+        System.out.println(institucion.getCorreoInstitucion());
         if (institucion.getCorreoInstitucion() == null){
             System.out.println("email null");
             return ResponseEntity.badRequest().build();
         }
-        if(institucionService.login(institucion)){
+        if(!institucionService.login(institucion)){
             System.out.println("login ok");
             Map<String, Object> response = new HashMap<>();
             response.put("token", JwtUtil.generateToken(institucion.getCorreoInstitucion()));
-            response.put("voluntario", institucionService.getInstitucion(institucion.getCorreoInstitucion()));
+            response.put("institucion", institucionService.getInstitucion(institucion.getCorreoInstitucion()));
             return ResponseEntity.ok().body(response);
         }
         System.out.println("login bad");

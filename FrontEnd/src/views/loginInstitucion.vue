@@ -15,23 +15,23 @@ export default {
       try {
         const response = await axios({
           method: "POST",
-          url: "http://localhost:8090/loginInstitucion1",
+          url: "http://localhost:8090/institucion/login",
           data: {
-            emailVoluntario: this.usuario,
-            contraseniaVoluntario: this.password,
+            correoInstitucion: this.usuario,
+            contraseniaInstitucion: this.password,
           },
         });
 
         if (response.status === 200) {
           
           const token = response.data.token;
-          const voluntario = response.data.voluntario
+          const institucion = response.data.institucion
           console.log(response.data.token)
-          console.log(response.data.voluntario)
+          console.log(response.data.institucion)
           localStorage.setItem("token", token);
           axios.defaults.headers.common["Authorization"] =`Bearer ${token}`;
-          localStorage.setItem("voluntario",JSON.stringify(voluntario))
-          this.$router.push("/about");
+          localStorage.setItem("institucion",JSON.stringify(institucion))
+          this.$router.push("/vistaInstitucion");
         }
       } catch (error) {
         this.$swal({
