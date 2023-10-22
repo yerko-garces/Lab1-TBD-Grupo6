@@ -30,7 +30,7 @@
       <v-list-item to="/habilities" class="borde">
         <div class="center-text">Mi Perfil</div>
       </v-list-item>
-      <v-list-item to="/..." class="borde">
+      <v-list-item to="/catastrofes" class="borde">
         <div class="center-text">Catástrofes</div>
       </v-list-item>
       <v-list-item to="/..." class="borde">

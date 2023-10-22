@@ -48,6 +48,11 @@ const router = createRouter({
       path: '/vistaInstitucion',
       name: 'vistaInstitucion',
       component: () => import('../views/vistaInstitucion.vue')
+    },
+    {
+      path: '/catastrofes',
+      name: 'catastrofes',
+      component: () => import('../views/catastrofes.vue')
     }
   ]
 })

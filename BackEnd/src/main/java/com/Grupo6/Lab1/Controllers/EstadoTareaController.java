@@ -3,12 +3,12 @@ package com.Grupo6.Lab1.Controllers;
 import com.Grupo6.Lab1.models.EstadoTarea;
 import com.Grupo6.Lab1.services.EstadoTareaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Service
+@RestController
+@CrossOrigin(origins = "*")
 public class EstadoTareaController {
 
     @Autowired
@@ -25,7 +25,7 @@ public class EstadoTareaController {
     @GetMapping("/verEstadoTarea")
     public List<EstadoTarea> mostrarEstadoTarea(){return estadoTareaService.verEstadoTarea ();}
 
-    @DeleteMapping("/borrarEmergencia/{id}")
+    @DeleteMapping("/borrarEstadoTarea/{id}")
     public void borrarEstadoTarea(@PathVariable Long id){estadoTareaService.borrarEstadotarea(id);}
 
 }
