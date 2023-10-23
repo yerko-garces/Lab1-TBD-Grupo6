@@ -39,4 +39,8 @@ public class VoluntarioService {
         }
         return voluntarioRepository.registrar(voluntario);
     }
+
+    public void actualizar(Long id, Voluntario voluntario) {
+        voluntarioRepository.actualizar(id, voluntario);
+    }
 }

@@ -4,35 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e88237ad-e2f6-4649-9034-134e6f238570" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Grupo6/Lab1/Controllers/voluntarioController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Grupo6/Lab1/Lab1TbdApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Grupo6/Lab1/Security/JwtUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Grupo6/Lab1/models/EntidadEj.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Grupo6/Lab1/models/EstadoTarea.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Grupo6/Lab1/models/Tarea.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Grupo6/Lab1/models/emeHabilidad.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Grupo6/Lab1/models/habilidad.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Grupo6/Lab1/models/rol.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Grupo6/Lab1/models/voluntario.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Grupo6/Lab1/models/voluntarioHabilidad.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Grupo6/Lab1/respositories/DatabaseContext.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Grupo6/Lab1/respositories/EntidadEjRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Grupo6/Lab1/respositories/EntidadEjRepositoryImp.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Grupo6/Lab1/respositories/VoluntarioRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Grupo6/Lab1/respositories/VoluntarioRepositoryImp.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Grupo6/Lab1/services/EntidadEjService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Grupo6/Lab1/services/VoluntarioService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/Grupo6/Lab1/Lab1TbdApplicationTests.java" beforeDir="false" />
-    </list>
+    <list default="true" id="e88237ad-e2f6-4649-9034-134e6f238570" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,10 +18,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 2
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2WxKEkOL4KDdxq1xI4iT5wAPSVM" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -62,6 +34,7 @@
     "WebServerToolWindowFactoryState": "false",
     "android.gradle.sync.needed": "true",
     "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/arias/OneDrive/Escritorio/TBD/Lab1-TBD-Grupo6",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -87,6 +60,7 @@
       <option name="presentableId" value="Default" />
       <updated>1697668683978</updated>
       <workItem from="1697668685707" duration="903000" />
+      <workItem from="1698029415431" duration="39000" />
     </task>
     <servers />
   </component>

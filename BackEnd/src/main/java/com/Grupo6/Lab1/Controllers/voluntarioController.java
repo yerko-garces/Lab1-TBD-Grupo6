@@ -57,12 +57,13 @@ public class voluntarioController {
     }
 
     @PutMapping("/actualizarUser/{id}")
-    public ResponseEntity<String> actualizar (@RequestBody Voluntario voluntario){
+    public ResponseEntity<String> actualizar (@RequestParam Long id, @RequestBody Voluntario voluntario){
         System.out.println(voluntario);
         if (voluntario.getEmailVoluntario() == null || voluntario.getEmailVoluntario().isEmpty() || voluntario.getRutVoluntario() == null || voluntario.getRutVoluntario().isEmpty()){
             System.out.println("email null");
             return ResponseEntity.badRequest().build();
         }
         voluntarioService.actualizar(id,voluntario);
+        return ResponseEntity.ok().build();
     }
 }

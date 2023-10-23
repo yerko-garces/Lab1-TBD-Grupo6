@@ -46,4 +46,17 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository {
             return voluntario;
         }
     }
+
+    @Override
+    public void actualizar(Long id, Voluntario voluntario) {
+        try(Connection conn = sql2o.open()){
+            conn.createQuery("UPDATE voluntario SET emailVoluntario = :email, rutVoluntario = :rut, nombreCompletoVoluntario = :nombre_completo, contraseniaVoluntario = :password WHERE idVoluntario = :id")
+                    .addParameter("rut", voluntario.getRutVoluntario())
+                    .addParameter("nombre_completo", voluntario.getNombreCompletoVoluntario())
+                    .addParameter("email", voluntario.getEmailVoluntario())
+                    .addParameter("password", voluntario.getContraseniaVoluntario())
+                    .addParameter("id", id)
+                    .executeUpdate();
+        }
+    }
 }
