@@ -62,7 +62,7 @@ export default {
         <v-text-field
           label="Usuario"
           placeholder="Introduzca su email de usuario"
-          type="input"
+          type="email"
           v-model="usuario"
         ></v-text-field>
       </v-responsive>

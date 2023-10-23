@@ -56,14 +56,15 @@ public class voluntarioController {
         return voluntarioService.getVoluntarios();
     }
 
-    @PutMapping("/actualizarUser/{id}")
-    public ResponseEntity<String> actualizar (@RequestParam Long id, @RequestBody Voluntario voluntario){
+    @PutMapping("/actualizarUser/{idVoluntario}")
+    public ResponseEntity<String> actualizar (@PathVariable Long idVoluntario, @RequestBody Voluntario voluntario){
+        System.out.println("entro en actualizar");
         System.out.println(voluntario);
         if (voluntario.getEmailVoluntario() == null || voluntario.getEmailVoluntario().isEmpty() || voluntario.getRutVoluntario() == null || voluntario.getRutVoluntario().isEmpty()){
             System.out.println("email null");
             return ResponseEntity.badRequest().build();
         }
-        voluntarioService.actualizar(id,voluntario);
+        voluntarioService.actualizar(idVoluntario,voluntario);
         return ResponseEntity.ok().build();
     }
 }

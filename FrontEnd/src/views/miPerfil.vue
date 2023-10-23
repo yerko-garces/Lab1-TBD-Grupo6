@@ -15,7 +15,7 @@
               >
                 <div class="text-subtitle-1 text-medium-emphasis" >Email</div>
                 <v-responsive class="mx-auto" max-width="400">
-                    <v-text-field  v-model="voluntario.emailVoluntario" type="input"></v-text-field>
+                    <v-text-field  v-model="voluntario.emailVoluntario" type="email"></v-text-field>
                 </v-responsive>
                 <div class="text-subtitle-1 text-medium-emphasis" >Nombre</div>
                 <v-responsive class="mx-auto" max-width="400">
@@ -31,6 +31,7 @@
                   size="large"
                   variant="tonal"
                   max-width="500"
+                  @click="actualizar"
                 >
                   ACTUALIZAR
                 </v-btn>
@@ -69,6 +70,11 @@ export default {
   mounted(){
     this.getVol();
   },
+  computed:{
+    valido(){
+      return /.+@.+\..+/.test(this.voluntario.emailVoluntario);
+    }
+  },
   methods: {
     getVol(){
         this.voluntario = JSON.parse(localStorage.getItem("voluntario"));
@@ -76,19 +82,29 @@ export default {
     },
     async actualizar() {
       try {
-        const res = await axios.post(
-            "http://localhost:8090/voluntarioHabilidad/actualizarHabilidadesVoluntario/"+this.voluntario.idVoluntario,
-            [this.lista1, this.seleccion]
-        );
+        if(!this.valido){
+          this.$swal({ 
+              icon: 'error',
+              title: 'Campos no validos',
+              text: 'Complete los datos'}).then(() => {
+          });
+        }else{
+         const res = await axios.put(
+            "http://localhost:8090/voluntario/actualizarUser/"+this.voluntario.idVoluntario,
+            this.voluntario
+        ); 
+        localStorage.removeItem('voluntario');
+        localStorage.setItem('voluntario',JSON.stringify(this.voluntario))
         this.lista1=this.seleccion;
         console.log(res.data);
-        this.$swal({ // Muestra la alerta de éxito
+        this.$swal({ 
               icon: 'success',
               title: 'Éxito',
               text: 'Se actualizaron los Datos de Usuario correctamente'}).then(() => {
               this.$router.push("/miPerfil");
               this.getVol();
           });
+        }
       } catch (error) {
         console.error(error);
       }

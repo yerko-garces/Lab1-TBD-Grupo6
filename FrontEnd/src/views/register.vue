@@ -12,12 +12,22 @@ export default {
       error: "",
     };
   },
+  computed:{
+    valido(){
+      return /.+@.+\..+/.test(this.emailVoluntario);
+    }
+  },
   methods: {
     async registrar() {
-        console.log(this.nombre);
-        console.log(this.rut);
       try {
-        const response = await axios({
+        if(!/.+@.+\..+/.test(this.emailVoluntario)){
+          this.$swal({ 
+              icon: 'error',
+              title: 'Correo no valido',
+              text: 'Ingrese un correo valido',
+          })
+        }else{
+          const response = await axios({
           method: "POST",
           url: "http://localhost:8090/voluntario/register",
           data: {
@@ -27,16 +37,17 @@ export default {
             rutVoluntario: this.rut
           },
         });
-
         if (response.status === 200) {
-          this.$swal({ // Muestra la alerta de éxito
+          this.$swal({ 
               icon: 'success',
               title: 'Éxito',
               text: 'Su perfil de Voluntario se creó exitosamente',
           }).then(() => {
               this.$router.push('/login'); // Redirige al usuario
           });
-        }
+        } 
+        
+        }        
       } catch (error) {
         this.$swal({
           icon: "error",
@@ -63,9 +74,9 @@ export default {
       <div class="text-subtitle-1 text-medium-emphasis">Ingrese los datos:</div>
       <v-responsive class="mx-auto" max-width="400">
         <v-text-field
-          label="Usuario"
+          label="Correo"
           placeholder="Introduzca su email de usuario"
-          type="input"
+          type="email"
           v-model="emailVoluntario"
         ></v-text-field>
       </v-responsive>
