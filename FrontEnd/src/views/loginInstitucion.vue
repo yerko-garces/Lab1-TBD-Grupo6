@@ -26,8 +26,6 @@ export default {
           
           const token = response.data.token;
           const institucion = response.data.institucion
-          console.log(response.data.token)
-          console.log(response.data.institucion)
           localStorage.setItem("token", token);
           axios.defaults.headers.common["Authorization"] =`Bearer ${token}`;
           localStorage.setItem("institucion",JSON.stringify(institucion))

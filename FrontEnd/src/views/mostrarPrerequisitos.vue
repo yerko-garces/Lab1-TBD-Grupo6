@@ -61,7 +61,6 @@
           this.seleccion = res.data;
           this.lista1 = res.data;
         }catch{
-          console.log("catch de obtenidas")
         }
       },
   
@@ -70,7 +69,6 @@
             const url = "http://localhost:8090/habilidad/getAll";
             axios.get(url)
             .then(response => {
-              console.log('Respuesta del servidor:', response);
               this.habilidades = response.data;
             })
               const res = await axios.get(
@@ -78,7 +76,6 @@
               );
               this.items = res.data;
           }catch{
-              console.log("catch")
           }
       },
       async actualizar() {
@@ -88,7 +85,6 @@
               [this.lista1, this.seleccion]
           );
           this.lista1=this.seleccion;
-          console.log(res.data);
           this.$router.push("/habilities");
         } catch (error) {
           console.error(error);

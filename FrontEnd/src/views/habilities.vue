@@ -73,7 +73,6 @@ export default {
         this.lista1 = res.data;
         this.habilidadesUser = res.data;
       }catch{
-        console.log("catch de obtenidas")
       }
     },
 
@@ -82,7 +81,6 @@ export default {
           const url = "http://localhost:8090/habilidad/get";
           axios.get(url)
           .then(response => {
-            console.log('Respuesta del servidor:', response);
             this.habilidades = response.data;
           })
             const res = await axios.get(
@@ -90,7 +88,6 @@ export default {
             );
             this.items = res.data;
         }catch{
-            console.log("catch")
         }
     },
     async actualizar() {
@@ -100,8 +97,7 @@ export default {
             [this.lista1, this.seleccion]
         );
         this.lista1=this.seleccion;
-        console.log(res.data);
-        this.$swal({ // Muestra la alerta de éxito
+        this.$swal({ 
               icon: 'success',
               title: 'Éxito',
               text: 'Se actualizaron las Habilidades correctamente'}).then(() => {

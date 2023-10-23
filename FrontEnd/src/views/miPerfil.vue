@@ -78,7 +78,6 @@ export default {
   methods: {
     getVol(){
         this.voluntario = JSON.parse(localStorage.getItem("voluntario"));
-        console.log(this.voluntario);
     },
     async actualizar() {
       try {
@@ -96,7 +95,6 @@ export default {
         localStorage.removeItem('voluntario');
         localStorage.setItem('voluntario',JSON.stringify(this.voluntario))
         this.lista1=this.seleccion;
-        console.log(res.data);
         this.$swal({ 
               icon: 'success',
               title: 'Éxito',

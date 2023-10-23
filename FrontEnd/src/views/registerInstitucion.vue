@@ -13,7 +13,6 @@ export default {
   },
   methods: {
     async registrar() {
-        console.log(this.nombre);
       try {
         const response = await axios({
           method: "POST",

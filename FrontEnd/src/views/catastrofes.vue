@@ -74,9 +74,7 @@ import { VLayoutItem } from 'vuetify/lib/components/index.mjs';
         const url = `http://localhost:8090/emergencia/verEmergenciasDisponibles/${voluntario.idVoluntario}`;
         axios.get(url)
           .then(response => {
-            console.log('Respuesta del servidor:', response);
             this.historial = response.data;
-            console.log(this.historial)
           })
           .catch(error => {
             console.error('Error al cargar emergencia:', error);
@@ -84,7 +82,6 @@ import { VLayoutItem } from 'vuetify/lib/components/index.mjs';
       },
       verPrerequisitos(idEmergencia){
         localStorage.setItem("idEmergencia", JSON.stringify(idEmergencia));
-        console.log(localStorage.getItem("idEmergencia"));
         this.$router.push("/mostrarPrerequisitos");
     },
     }

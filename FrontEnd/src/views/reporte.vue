@@ -115,22 +115,18 @@
         axios.get(url)
           .then(response => {
             this.historial = response.data;
-            console.log(this.historial);
           })
           .catch(error => {
             console.error('Error al cargar tareas:', error);
           });
       },
       mostrarBoton(tarea){
-        console.log(tarea.status)
-        console.log(tarea)
         return tarea.status;
       },
       esFiltrado(tarea){
         if(this.filtrado==''){
           return true;
         }
-        console.log(tarea);
         if(tarea.status==null){
           return true;      }
         if(tarea.status == true && this.filtrado=="P"){
