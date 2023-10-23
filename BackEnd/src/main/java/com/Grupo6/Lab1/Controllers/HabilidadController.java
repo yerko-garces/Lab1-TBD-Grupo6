@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import static com.Grupo6.Lab1.Security.JwtUtil.validarToken;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/habilidad")
 public class HabilidadController {
 

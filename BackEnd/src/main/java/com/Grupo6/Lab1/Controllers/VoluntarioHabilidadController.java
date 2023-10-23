@@ -15,9 +15,8 @@ import static com.Grupo6.Lab1.Security.JwtUtil.validarToken;
 
 @RestController
 @RequestMapping("/voluntarioHabilidad")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:5173")
 public class VoluntarioHabilidadController {
-
     private final VoluntarioHabilidadService voluntarioHabilidadService;
 
     @Autowired

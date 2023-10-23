@@ -3,10 +3,10 @@
 CREATE TABLE IF NOT EXISTS logs (
     id SERIAL PRIMARY KEY,
     idUsuario BIGINT,
+    tipo TEXT,
     descripcion TEXT,
     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
 );
-
 
 --funcion para tabla voluntarios
 
@@ -15,11 +15,11 @@ RETURNS TRIGGER AS
 $$
 BEGIN
     IF TG_OP = 'INSERT' THEN
-        INSERT INTO logs (idUsuario, descripcion) VALUES (NEW.idvoluntario,'Nueva inserción realizada');
+        INSERT INTO logs (idUsuario,tipo, descripcion) VALUES (NEW.idvoluntario,'Insert','Nueva inserción realizada');
     ELSIF TG_OP = 'UPDATE' THEN
-        INSERT INTO logs (idUsuario, descripcion) VALUES (NEW.idvoluntario,'Actualización realizada');
+        INSERT INTO logs (idUsuario,tipo, descripcion) VALUES (NEW.idvoluntario,'Update','Actualización realizada');
     ELSIF TG_OP = 'DELETE' THEN
-        INSERT INTO logs (idUsuario, descripcion) VALUES (OLD.idvoluntario,'Eliminación realizada');
+        INSERT INTO logs (idUsuario,tipo, descripcion) VALUES (OLD.idvoluntario,'Delete','Eliminación realizada');
     END IF;
     
     RETURN NEW;
@@ -44,11 +44,11 @@ RETURNS TRIGGER AS
 $$
 BEGIN
     IF TG_OP = 'INSERT' THEN
-        INSERT INTO logs (idUsuario, descripcion) VALUES (NEW.idvoluntario,'El usuario insert una habilidad');
+        INSERT INTO logs (idUsuario,tipo, descripcion) VALUES (NEW.idvoluntario,'Insert','Nueva inserción realizada');
     ELSIF TG_OP = 'UPDATE' THEN
-        INSERT INTO logs (idUsuario, descripcion) VALUES (NEW.idvoluntario,'El usuario actualizo una habilidad');
+        INSERT INTO logs (idUsuario,tipo, descripcion) VALUES (NEW.idvoluntario,'Update','Nueva inserción realizada');
     ELSIF TG_OP = 'DELETE' THEN
-        INSERT INTO logs (idUsuario, descripcion) VALUES (OLD.idvoluntario,'El usuario elimino una habilidad');
+        INSERT INTO logs (idUsuario,tipo, descripcion) VALUES (OLD.idvoluntario,'Delete','Eliminación realizada');
     END IF;
     
     RETURN NEW;
@@ -71,11 +71,11 @@ RETURNS TRIGGER AS
 $$
 BEGIN
     IF TG_OP = 'INSERT' THEN
-        INSERT INTO logs (idUsuario, descripcion) VALUES (NEW.idinstitucion,'la institucion ha creado una emergencia');
+        INSERT INTO logs (idUsuario,tipo, descripcion) VALUES (NEW.idinstitucion,'Insert','la institucion ha creado una emergencia');
     ELSIF TG_OP = 'UPDATE' THEN
-        INSERT INTO logs (idUsuario, descripcion) VALUES (NEW.idinstitucion,'la institucion ha actualizado una emergencia');
+        INSERT INTO logs (idUsuario,tipo, descripcion) VALUES (NEW.idinstitucion,'Update','la institucion ha actualizado una emergencia');
     ELSIF TG_OP = 'DELETE' THEN
-        INSERT INTO logs (idUsuario, descripcion) VALUES (OLD.idinstitucion,'la institucion ha eliminado una emergencia');
+        INSERT INTO logs (idUsuario,tipo, descripcion) VALUES (OLD.idinstitucion,'Delete','la institucion ha eliminado una emergencia');
     END IF;
     
     RETURN NEW;
@@ -98,11 +98,11 @@ RETURNS TRIGGER AS
 $$
 BEGIN
     IF TG_OP = 'INSERT' THEN
-        INSERT INTO logs (idUsuario, descripcion) VALUES (NEW.idinstitucion,'Se ha creado la institucion');
+        INSERT INTO logs (idUsuario,tipo, descripcion) VALUES (NEW.idinstitucion,'Insert','Se ha creado la institucion');
     ELSIF TG_OP = 'UPDATE' THEN
-        INSERT INTO logs (idUsuario, descripcion) VALUES (NEW.idinstitucion,'Se ha actualizado la institucion');
+        INSERT INTO logs (idUsuario,tipo, descripcion) VALUES (NEW.idinstitucion,'Update','Se ha actualizado la institucion');
     ELSIF TG_OP = 'DELETE' THEN
-        INSERT INTO logs (idUsuario, descripcion) VALUES (OLD.idinstitucion,'Se ha eliminado la institucion');
+        INSERT INTO logs (idUsuario,tipo, descripcion) VALUES (OLD.idinstitucion,'Delete','Se ha eliminado la institucion');
     END IF;
     
     RETURN NEW;
