@@ -45,7 +45,7 @@
   
   .centered-message {
     text-align: center;
-    padding: 20px;
+    padding: 100px;
   }
   
   .titulo {
@@ -56,7 +56,7 @@
     border: 2px solid #020202;
     border-radius: 10px;
     margin-bottom: 20px;
-    margin-top: 300px;
+    margin-top: -200px;
     background-color: #EA7600;
   }
   

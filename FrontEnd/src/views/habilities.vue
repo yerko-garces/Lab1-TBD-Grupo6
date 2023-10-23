@@ -24,6 +24,16 @@
                   size="large"
                   variant="tonal"
                   max-width="500" @click="actualizar">Agregar</v-btn>
+              <router-link to="/about">
+                <v-btn
+                  class="mb-8"
+                  color="blue"
+                  size="large"
+                  variant="tonal"
+                >
+                  VOLVER AL INICIO
+                </v-btn>
+              </router-link>
             </div>
           </div>
         </div>

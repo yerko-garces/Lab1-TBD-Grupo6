@@ -34,8 +34,17 @@
                 >
                   ACTUALIZAR
                 </v-btn>
-              </v-card>
-            
+                <router-link to="/about">
+                  <v-btn
+                    class="mb-8"
+                    color="blue"
+                    size="large"
+                    variant="tonal"
+                  >
+                    VOLVER AL INICIO
+                  </v-btn>
+                </router-link>
+              </v-card>  
           </div>
         </div>
       </div>
