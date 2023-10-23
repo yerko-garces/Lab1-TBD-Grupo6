@@ -1,121 +1,129 @@
- 
-  <style scoped>
-  .centered-layout {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-  }
+<template>
+    <v-layout class="rounded rounded-md">
+      <Header />
+      <v-main>
+        <div class="centered-layout">
+          <div class="centered-message">
+            <div class="content">
+              <h2 class="sub-titulo">Mis Habilidades</h2>
+              <v-card
+                  class="mx-auto pa-12 pb-8"
+                  elevation="4"
+                  max-width="600"
+                  rounded="lg"
+                  style="margin-bottom: 50px"
+                >
+                <v-list :items="seleccion" :item-props="itemProps"
+                ></v-list>
+              </v-card>
+              <h2 class="sub-titulo">Agregar Habilidades</h2>
+              <div class="sub-titulo">
+                  <v-select clearable :items="habilidades" :item-props="itemProps" ></v-select>
+                <v-btn class="mb-8"
+                    color="green"
+                    size="large"
+                    variant="tonal"
+                    max-width="500" @click="actualizar">Agregar</v-btn>
+              </div>
+            </div>
+          </div>
+        </div>
+      </v-main>
+    </v-layout>
+  </template>
   
-  .centered-message {
-    text-align: center;
-    padding: 20px;
-  }
-  
-  .titulo {
-    font-size: 34px;
-    font-weight: bold;
-    padding: 15px;
-    border: 2px solid #020202;
-    border-radius: 10px;
-    background-color: #EA7600;
-  }
-  
-  .tabla-container {
-    margin-top: 20px;
-  }
-  
-  .tabla {
-    width: 80%;
-    margin: 0 auto;
-    border-collapse: collapse;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  .tabla th,
-  .tabla td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .tabla th {
-    background-color: #EA7600;
-    color: white;
-  }
-  </style>
-    
-    
-    
   <script>
+  
   import axios from 'axios';
   import Header from "../components/Header.vue";
+  
   export default {
     components: {
       Header,
     },
-    data() {
-      return {
-        historial: [],
-  
-      };
-    },
-    mounted() {
-      this.cargarCatastrofes();
+    data: () => ({
+        items: [],
+        habilidades: [],
+        seleccion: [],
+        lista1:[]
+      }),
+    mounted(){
+      this.getHabilidades(); //cambiar por obtener las no seleccionadas
+      this.getVol();
+      this.getObtenidas(); //obtener habilidades ya escogidas
     },
     methods: {
-      cargarCatastrofes() {
-        const url = `http://localhost:8090/emergencia/mostrarPrerequisitos/${idEmergencia}`;
-        axios.get(url)
-          .then(response => {
-            console.log('Respuesta del servidor:', response);
-            this.historial = response.data;
-          })
-          .catch(error => {
-            console.error('Error al cargar emergencia:', error);
-          });
+      async getObtenidas(){
+        try{
+          const res = await axios.get(
+            "http://localhost:8090/voluntarioHabilidad/getAllHabilidadesVoluntario/" + this.voluntario.idVoluntario
+          );
+          this.seleccion = res.data;
+          this.lista1 = res.data;
+        }catch{
+          console.log("catch de obtenidas")
+        }
       },
-      verPrerequisitos(idEmergencia){
-        localStorage.setItem("idEmergencia", JSON.stringify(idEmergencia));
-        console.log(localStorage.getItem("idEmergencia"));
-        this.$router.push("/mostrarPrerequisitos");
-    },
-    }
+  
+      async getHabilidades(){
+          try{
+            const url = "http://localhost:8090/habilidad/getAll";
+            axios.get(url)
+            .then(response => {
+              console.log('Respuesta del servidor:', response);
+              this.habilidades = response.data;
+            })
+              const res = await axios.get(
+                  
+              );
+              this.items = res.data;
+          }catch{
+              console.log("catch")
+          }
+      },
+      async actualizar() {
+        try {
+          const res = await axios.post(
+              "http://localhost:8090/voluntarioHabilidad/actualizarHabilidadesVoluntario/"+this.voluntario.idVoluntario,
+              [this.lista1, this.seleccion]
+          );
+          this.lista1=this.seleccion;
+          console.log(res.data);
+          this.$router.push("/habilities");
+        } catch (error) {
+          console.error(error);
+        }
+      },
+  
+  
+      itemProps (item) {
+          return {
+            title: item.nombreHabilidad,
+            subtitle: item.id_habilidad,
+          }
+      },
+      getVol(){
+          this.voluntario = JSON.parse(localStorage.getItem("voluntario"));
+      },
+      }
   };
   </script>
-
-<template>
-    <v-layout class="rounded rounded-md centered-layout">
-      <Header />
-      <div class="centered-message">
-        <h1>
-          <img alt="Vue logo" class="logo" src="@/assets/logo_sai_usach_4.png" width="300" height="150" />
-        </h1>
-        <p class="titulo">Emergencia</p>
-        <div class="tabla-container">
-          <table class="tabla">
-            <thead>
-            <tr>
-              <th>Nombre de Emergencia</th>
-            </tr>
-          </thead>
-            <tbody>
-              <tr v-for="emergencia in historial" :key="emergencia.idEmergencia">
-                <td>{{ emergencia.nombreEmergencia }}</td>
-                <td>
-                <v-btn block class="mb-1" color="green" background-color="#394049" @click="verPrerequisitos(emergencia.idEmergencia)">
-                  <div>Ver requisitos</div>
-                </v-btn>
-              </td>
-              </tr> 
-            </tbody>
-          </table>
-        </div>
-        <div class="input-container">
-        </div>
-      </div>
-    </v-layout>
-  </template>
+  
+  <style scoped>
+  .info-details {
+      border: 2px solid #a5a4a4;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: left;
+      margin: 20px;
+  }
+  
+  .sub-titulo {
+      border: 2px solid #a5a4a4;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      margin: 20px;
+  }
+  </style>
+  

@@ -28,4 +28,12 @@ public class EmergenciaService {
         List<String> prerequisitos = emergenciaRepository.obtenerPrerequisitos(id);
         return prerequisitos;
     }
+
+    public List<Emergencia> verEmergenciasDisponibles(Long id){
+        List<Emergencia> emergencias = emergenciaRepository.verEmergenciasDisponibles(id);
+        System.out.println(emergencias);
+        return emergencias;
+    }
+
+
 }

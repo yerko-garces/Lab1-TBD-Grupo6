@@ -33,5 +33,12 @@ public class EmergenciaController {
     public List<String> mostrarPrerequisitos(@RequestBody Long id){
         return emergenciaService.obtenerPrerequisitos(id);
     }
+    @GetMapping("/verEmergenciasDisponibles/{id}")
+    public List<Emergencia> verEmergenciasDisponibles(@PathVariable Long id){
+        System.out.println(id);
+        List<Emergencia> emergencias = emergenciaService.verEmergenciasDisponibles(id);
+        System.out.println(emergencias);
+        return emergencias;
+    }
 
 }

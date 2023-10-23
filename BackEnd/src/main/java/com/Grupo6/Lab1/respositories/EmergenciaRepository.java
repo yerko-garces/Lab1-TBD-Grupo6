@@ -13,4 +13,6 @@ public interface EmergenciaRepository {
     public void delete(Long idEmergencia);
 
     public  List<String> obtenerPrerequisitos(Long idEmergencia);
+
+    public List<Emergencia> verEmergenciasDisponibles (Long idVoluntario);
 }

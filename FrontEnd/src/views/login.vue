@@ -2,6 +2,10 @@
 import axios from "axios";
 
 export default {
+  created(){
+    
+    this.items=JSON.parse(localStorage.getItem('voluntario'))
+  },
   name: "login",
   data() {
     return {
@@ -30,7 +34,8 @@ export default {
           console.log(response.data.voluntario)
           localStorage.setItem("token", token);
           axios.defaults.headers.common["Authorization"] =`Bearer ${token}`;
-          localStorage.setItem("voluntario",JSON.stringify(voluntario))
+          localStorage.setItem('voluntario',JSON.stringify(voluntario))
+
           this.$router.push("/about");
         }
       } catch (error) {

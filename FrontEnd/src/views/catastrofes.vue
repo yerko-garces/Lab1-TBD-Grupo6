@@ -53,6 +53,7 @@
   <script>
   import axios from 'axios';
   import Header from "../components/Header.vue";
+import { VLayoutItem } from 'vuetify/lib/components/index.mjs';
   export default {
     components: {
       Header,
@@ -60,6 +61,7 @@
     data() {
       return {
         historial: [],
+        voluntario: null,
   
       };
     },
@@ -68,11 +70,13 @@
     },
     methods: {
       cargarCatastrofes() {
-        const url = `http://localhost:8090/emergencia/verEmergencia`;
+        const voluntario = JSON.parse(localStorage.getItem('voluntario'));
+        const url = `http://localhost:8090/emergencia/verEmergenciasDisponibles/${voluntario.idVoluntario}`;
         axios.get(url)
           .then(response => {
             console.log('Respuesta del servidor:', response);
             this.historial = response.data;
+            console.log(this.historial)
           })
           .catch(error => {
             console.error('Error al cargar emergencia:', error);
