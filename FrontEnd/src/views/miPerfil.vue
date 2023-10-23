@@ -15,15 +15,15 @@
               >
                 <div class="text-subtitle-1 text-medium-emphasis" >Email</div>
                 <v-responsive class="mx-auto" max-width="400">
-                    <v-text-field  value="gabriel.ojeda@usach.cl" type="input"></v-text-field>
+                    <v-text-field  v-model="voluntario.emailVoluntario" type="input"></v-text-field>
                 </v-responsive>
                 <div class="text-subtitle-1 text-medium-emphasis" >Nombre</div>
                 <v-responsive class="mx-auto" max-width="400">
-                    <v-text-field value="Gaeloco" type="input"></v-text-field>
+                    <v-text-field v-model="voluntario.nombreCompletoVoluntario" type="input"></v-text-field>
                 </v-responsive>
                 <div class="text-subtitle-1 text-medium-emphasis" >Rut</div>
                 <v-responsive class="mx-auto" max-width="400">
-                    <v-text-field value="20.117.689-1" type="input" ></v-text-field>
+                    <v-text-field v-model="voluntario.rutVoluntario" type="input" ></v-text-field>
                 </v-responsive>
                 <v-btn
                   class="mb-8"
@@ -63,39 +63,16 @@ export default {
   },
   data() {
     return {
-      seleccion: [],
-      items: [],
-      lista1: [],
       voluntario:"",
     };
   },
   mounted(){
-    this.getHabilidades(); //cambiar por obtener las no seleccionadas
     this.getVol();
-    this.getObtenidas(); //obtener habilidades ya escogidas
   },
   methods: {
-    async getObtenidas(){
-      try{
-        const res = await axios.get(
-          "http://localhost:8090/voluntarioHabilidad/getHabilidadesVoluntario/" + this.voluntario.idVoluntario
-        );
-        this.seleccion = res.data;
-        this.lista1 = res.data;
-      }catch{
-        console.log("catch de obtenidas")
-      }
-    },
-
-    async getHabilidades(){
-        try{
-            const res = await axios.get(
-                "http://localhost:8090/habilidad/get"
-            );
-            this.items = res.data;
-        }catch{
-            console.log("catch")
-        }
+    getVol(){
+        this.voluntario = JSON.parse(localStorage.getItem("voluntario"));
+        console.log(this.voluntario);
     },
     async actualizar() {
       try {
@@ -105,21 +82,16 @@ export default {
         );
         this.lista1=this.seleccion;
         console.log(res.data);
-        this.$router.push("/habilities");
+        this.$swal({ // Muestra la alerta de éxito
+              icon: 'success',
+              title: 'Éxito',
+              text: 'Se actualizaron los Datos de Usuario correctamente'}).then(() => {
+              this.$router.push("/miPerfil");
+              this.getVol();
+          });
       } catch (error) {
         console.error(error);
       }
-    },
-
-
-    itemProps (item) {
-        return {
-          title: item.nombreHabilidad,
-          subtitle: item.id_habilidad,
-        }
-    },
-    getVol(){
-        this.voluntario = JSON.parse(localStorage.getItem("voluntario"));
     },
     }
 };

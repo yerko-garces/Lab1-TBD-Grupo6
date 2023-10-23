@@ -10,5 +10,5 @@ public interface VoluntarioRepository {
 
     Voluntario getVoluntarioByEmail(String email);
 
-    void registrar(Voluntario voluntario);
+    Voluntario registrar(Voluntario voluntario);
 }

@@ -27,11 +27,43 @@
 <script>
 import axios from 'axios';
 import Header from "../components/Header.vue";
+
 export default {
   components: {
     Header,
-  }
-}
+  },
+  data: () => ({
+      items: [],
+      habilidadesUser: [],
+    }),
+  mounted(){
+    this.getObtenidas(); //obtener habilidades ya escogidas
+  },
+  methods: {
+    async getObtenidas(){
+      try{
+        const res = await axios.get(
+          "http://localhost:8090/voluntarioHabilidad/getAllHabilidadesVoluntario/" + this.voluntario.idVoluntario
+        );
+        this.habilidadesUser = res.data;
+        this.compareUser();
+      }catch{
+        console.log("catch de obtenidas")
+      }
+    },
+    compareUser(){
+      if (this.habilidadesUser.length === 0){
+        console.log(this.habilidadesUser.length)
+        this.$swal({
+              icon: 'info',
+              title: 'ACTUALICE SU PERFIL',
+              text: 'Recuerde registrar las habilidades acorde a su perfil',
+          }).then(() => {
+              this.$router.push('/habilities');
+          });
+      } 
+    },
+}}
 </script>
 
 <style scoped>

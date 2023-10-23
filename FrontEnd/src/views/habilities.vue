@@ -13,17 +13,17 @@
                 rounded="lg"
                 style="margin-bottom: 50px"
               >
-              <v-list :items="seleccion" :item-props="itemProps"
+              <v-list :items="habilidadesUser" :item-props="itemProps"
               ></v-list>
             </v-card>
-            <h2 class="sub-titulo">Agregar Habilidades</h2>
+            <h2 class="sub-titulo">Actualizar Habilidades</h2>
             <div class="sub-titulo">
-                <v-select clearable :items="habilidades" :item-props="itemProps" ></v-select>
+                <v-select clearable multiple v-model="seleccion" :items="habilidades" :item-props="itemProps" ></v-select>
               <v-btn class="mb-8"
                   color="green"
                   size="large"
                   variant="tonal"
-                  max-width="500" @click="actualizar">Agregar</v-btn>
+                  max-width="500" @click="actualizar">Actualizar</v-btn>
               <router-link to="/about">
                 <v-btn
                   class="mb-8"
@@ -53,6 +53,7 @@ export default {
   },
   data: () => ({
       items: [],
+      habilidadesUser: [],
       habilidades: [],
       seleccion: [],
       lista1:[]
@@ -70,6 +71,7 @@ export default {
         );
         this.seleccion = res.data;
         this.lista1 = res.data;
+        this.habilidadesUser = res.data;
       }catch{
         console.log("catch de obtenidas")
       }
@@ -77,7 +79,7 @@ export default {
 
     async getHabilidades(){
         try{
-          const url = "http://localhost:8090/habilidad/getAll";
+          const url = "http://localhost:8090/habilidad/get";
           axios.get(url)
           .then(response => {
             console.log('Respuesta del servidor:', response);
@@ -99,7 +101,15 @@ export default {
         );
         this.lista1=this.seleccion;
         console.log(res.data);
-        this.$router.push("/habilities");
+        this.$swal({ // Muestra la alerta de éxito
+              icon: 'success',
+              title: 'Éxito',
+              text: 'Se actualizaron las Habilidades correctamente'}).then(() => {
+              this.$router.push("/habilities");
+              this.getHabilidades();
+              this.getVol();
+              this.getObtenidas();
+          });
       } catch (error) {
         console.error(error);
       }

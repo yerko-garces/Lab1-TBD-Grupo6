@@ -32,7 +32,7 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository {
     }
 
     @Override
-    public void registrar(Voluntario voluntario) {
+    public Voluntario registrar(Voluntario voluntario) {
         String contra = BCrypt.hashpw(voluntario.getContraseniaVoluntario(), BCrypt.gensalt());
 
         try(Connection conn = sql2o.open()){
@@ -42,6 +42,8 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository {
                     .addParameter("email", voluntario.getEmailVoluntario())
                     .addParameter("password", contra)
                     .executeUpdate();
+            voluntario.setContraseniaVoluntario(contra);
+            return voluntario;
         }
     }
 }

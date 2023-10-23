@@ -50,7 +50,7 @@ public class VoluntarioHabilidadController {
     //obtiene las habilidades que ya tiene el voluntario
     @GetMapping("/getHabilidadesVoluntario/{id}")
     public List<Habilidad> getHabilidades(@RequestHeader("Authorization") String token, @PathVariable Long id) {
-        if(token == null || validarToken(token)){
+        if(token == null || !validarToken(token)){
             return null;
         }
         System.out.println("el id:"+    id);

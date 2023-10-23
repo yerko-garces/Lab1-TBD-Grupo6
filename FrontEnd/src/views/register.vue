@@ -34,16 +34,8 @@ export default {
               title: 'Éxito',
               text: 'Su perfil de Voluntario se creó exitosamente',
           }).then(() => {
-              this.$router.push('/about'); // Redirige al usuario
-              this.$swal({ // Muestra la alerta de éxito
-              icon: 'info',
-              title: 'ACTUALICE SU PERFIL',
-              text: 'Recuerde registrar las habilidades acorde a su perfil',
-          }).then(() => {
-              this.$router.push('/habilities'); // Redirige al usuario
+              this.$router.push('/login'); // Redirige al usuario
           });
-          });
-
         }
       } catch (error) {
         this.$swal({

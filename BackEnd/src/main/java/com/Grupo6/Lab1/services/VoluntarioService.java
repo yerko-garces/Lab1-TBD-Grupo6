@@ -33,11 +33,10 @@ public class VoluntarioService {
         return voluntarioRepository.getVoluntarioByEmail(email);
     }
 
-    public int registrar(Voluntario voluntario) {
+    public Voluntario registrar(Voluntario voluntario) {
         if(voluntarioRepository.getVoluntarioByEmail(voluntario.getEmailVoluntario()) != null){
-            return 0;
+            return null;
         }
-        voluntarioRepository.registrar(voluntario);
-        return 1;
+        return voluntarioRepository.registrar(voluntario);
     }
 }

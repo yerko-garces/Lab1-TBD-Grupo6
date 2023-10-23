@@ -8,7 +8,7 @@ import java.util.Date;
 
 public class JwtUtil {
     private static final String key = "estaesunaclavequedebesermuygrandeparaquealcazeuntamanoigualomayora256bitsesperolograrloconesto";
-    private static final long tiempo = 10 * 60 *10;
+    private static final long tiempo = 9000 * 60 *10;
 
     public static String generateToken(String usuario){
         SecretKey key1 = Keys.hmacShaKeyFor(key.getBytes());

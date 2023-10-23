@@ -38,18 +38,31 @@ public class voluntarioController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<String> registrar(@RequestBody Voluntario voluntario){
+    public ResponseEntity<Map<String, Object>> registrar(@RequestBody Voluntario voluntario){
         System.out.println(voluntario);
         if (voluntario.getEmailVoluntario() == null || voluntario.getEmailVoluntario().isEmpty() || voluntario.getRutVoluntario() == null || voluntario.getRutVoluntario().isEmpty()){
             System.out.println("email null");
             return ResponseEntity.badRequest().build();
         }
         voluntarioService.registrar(voluntario);
-        return ResponseEntity.ok().build();
+        Map<String, Object> response = new HashMap<>();
+        response.put("token", JwtUtil.generateToken(voluntario.getEmailVoluntario()));
+        response.put("voluntario", voluntarioService.getVoluntario(voluntario.getEmailVoluntario()));
+        return ResponseEntity.ok().body(response);
     }
 
     @GetMapping("voluntarios")
     public List<Voluntario> voluntarios(){
         return voluntarioService.getVoluntarios();
+    }
+
+    @PutMapping("/actualizarUser/{id}")
+    public ResponseEntity<String> actualizar (@RequestBody Voluntario voluntario){
+        System.out.println(voluntario);
+        if (voluntario.getEmailVoluntario() == null || voluntario.getEmailVoluntario().isEmpty() || voluntario.getRutVoluntario() == null || voluntario.getRutVoluntario().isEmpty()){
+            System.out.println("email null");
+            return ResponseEntity.badRequest().build();
+        }
+        voluntarioService.actualizar(id,voluntario);
     }
 }
