@@ -8,7 +8,7 @@ import java.util.Date;
 
 public class JwtUtil {
     private static final String key = "estaesunaclavequedebesermuygrandeparaquealcazeuntamanoigualomayora256bitsesperolograrloconesto";
-    private static final long tiempo = 9000 * 60 *10;
+    private static final long tiempo =  20*60*1000;
 
     public static String generateToken(String usuario){
         SecretKey key1 = Keys.hmacShaKeyFor(key.getBytes());
@@ -27,14 +27,16 @@ public class JwtUtil {
         return Jwts.parserBuilder().setSigningKey(key.getBytes()).build().parseClaimsJws(token);
     }
 
-    public static boolean validarToken(String token){
-        try{
+    public static boolean validarToken(String token) {
+        try {
             Jws<Claims> claims = parseToken(token);
             return !claims.getBody().getExpiration().before(new Date());
-        }catch(JwtException | IllegalArgumentException e){
+        } catch (JwtException | IllegalArgumentException e) {
+            System.out.println("Error al validar el token: " + e.getMessage());
             return false;
         }
     }
+
 
 
 }

@@ -34,4 +34,13 @@ public class Emergencia {
     public void setIdInstitucion(Long idInstitucion) {
         this.idInstitucion = idInstitucion;
     }
+
+    @Override
+    public String toString() {
+        return "Emergencia{" +
+                "idEmergencia=" + idEmergencia +
+                ", nombreEmergencia='" + nombreEmergencia + '\'' +
+                ", idInstitucion=" + idInstitucion +
+                '}';
+    }
 }

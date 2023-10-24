@@ -26,8 +26,6 @@ public class VoluntarioHabilidadController {
 
     @PostMapping("/crearVoluntarioHabilidad")
     public VoluntarioHabilidad crearVoluntarioHabilidad(@RequestBody VoluntarioHabilidad voluntarioHabilidad) {
-        System.out.println(voluntarioHabilidad.getIdHabilidad());
-        System.out.println(voluntarioHabilidad.getIdVoluntario());
         return voluntarioHabilidadService.createVoluntarioHabilidad(voluntarioHabilidad);
     }
 
@@ -46,27 +44,29 @@ public class VoluntarioHabilidadController {
         voluntarioHabilidadService.deleteVoluntarioHabilidad(id);
     }
 
-    //obtiene las habilidades que ya tiene el voluntario
     @GetMapping("/getHabilidadesVoluntario/{id}")
     public List<Habilidad> getHabilidades(@RequestHeader("Authorization") String token, @PathVariable Long id) {
-        if(token == null || !validarToken(token)){
+        if (!validarToken(token)) {
             return null;
+        }else{
+            return voluntarioHabilidadService.getHabilidadesVoluntario(id);
         }
-        System.out.println("el id:"+    id);
-        return voluntarioHabilidadService.getHabilidadesVoluntario(id);
+
+
     }
+
 
     @GetMapping("/getAllHabilidadesVoluntario/{id}")
     public List<Habilidad> getHabilidadesVol(@PathVariable Long id) {
-        System.out.println("el id:"+    id);
         return voluntarioHabilidadService.getHabilidadesVoluntario(id);
     }
 
     @PostMapping("/actualizarHabilidadesVoluntario/{id}")
     public ResponseEntity<String> actualizar(@RequestHeader("Authorization") String token, @PathVariable Long id,@RequestBody List<List<Habilidad>> data) {
         System.out.println(token);
-        if(token == null || validarToken(token)){
-            System.out.println("token invalido");
+        System.out.println(validarToken(token));
+        if(!validarToken(token)){
+            System.out.println("token invalido en actualizar");
             return ResponseEntity.badRequest().build();
         }
         List<Habilidad> listaOriginal = data.get(0);

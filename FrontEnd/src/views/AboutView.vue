@@ -34,26 +34,29 @@ export default {
   },
   data: () => ({
       items: [],
-      habilidadesUser: [],
+      voluntario: null,
     }),
   mounted(){
+    this.getVol();
     this.getObtenidas(); //obtener habilidades ya escogidas
   },
   methods: {
+    getVol(){
+        this.voluntario = JSON.parse(localStorage.getItem("voluntario"));
+    },
     async getObtenidas(){
       try{
+        console.log("pre funcion")
         const res = await axios.get(
-          "http://localhost:8090/voluntarioHabilidad/getAllHabilidadesVoluntario/" + this.voluntario.idVoluntario
-        );
-        this.habilidadesUser = res.data;
-        this.compareUser();
+          "http://localhost:8090/voluntarioHabilidad/getHabilidadesVoluntario/" + this.voluntario.idVoluntario);
+        this.compareUser(res.data);
       }catch{
         console.log("catch de obtenidas")
       }
     },
-    compareUser(){
-      if (this.habilidadesUser.length === 0){
-        console.log(this.habilidadesUser.length)
+    compareUser(lista){
+      if (lista.length === 0){
+        console.log(lista.length)
         this.$swal({
               icon: 'info',
               title: 'ACTUALICE SU PERFIL',

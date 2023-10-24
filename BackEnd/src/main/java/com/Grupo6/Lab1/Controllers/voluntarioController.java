@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.Grupo6.Lab1.Security.JwtUtil.validarToken;
+
 @RestController
 @RequestMapping("/voluntario")
 @CrossOrigin(origins = "http://localhost:5173")
@@ -23,17 +25,16 @@ public class voluntarioController {
     public ResponseEntity<Map<String, Object>> login(@RequestBody Voluntario voluntario){
         System.out.println(voluntario);
         if (voluntario.getEmailVoluntario() == null){
-            System.out.println("email null");
             return ResponseEntity.badRequest().build();
         }
         if(voluntarioService.login(voluntario)){
-            System.out.println("login ok");
             Map<String, Object> response = new HashMap<>();
+            if(validarToken(JwtUtil.generateToken(voluntario.getEmailVoluntario()))){
+                System.out.println("token valido");}
             response.put("token", JwtUtil.generateToken(voluntario.getEmailVoluntario()));
             response.put("voluntario", voluntarioService.getVoluntario(voluntario.getEmailVoluntario()));
             return ResponseEntity.ok().body(response);
         }
-        System.out.println("login bad");
         return ResponseEntity.badRequest().build();
     }
 

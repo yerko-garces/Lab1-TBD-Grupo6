@@ -83,11 +83,10 @@ export default {
           .then(response => {
             this.habilidades = response.data;
           })
-            const res = await axios.get(
-                
-            );
+            const res = await axios.get();
             this.items = res.data;
         }catch{
+          console.log("error al obtener todas las habilidades")
         }
     },
     async actualizar() {

@@ -36,12 +36,7 @@
       <v-list-item to="/catastrofes" class="borde">
         <div class="center-text">Catástrofes</div>
       </v-list-item>
-      <v-list-item to="/..." class="borde">
-        <div class="center-text">Tareas</div>
-      </v-list-item>
-      <v-list-item to="/reporte" class="borde">
-        <div class="center-text">Reportes</div>
-      </v-list-item>
+
     </v-list>
     </v-navigation-drawer>
   </template>

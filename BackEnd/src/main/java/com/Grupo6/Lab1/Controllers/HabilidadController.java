@@ -31,10 +31,10 @@ public class HabilidadController {
 
     @GetMapping("/get")
     public ArrayList<Habilidad> mostrarHabilidad(@RequestHeader("Authorization") String token){
-        if (validarToken(token)){
+        System.out.println("token: "+token);
+        if (!validarToken(token)){
             return null;
         }
-
         return (ArrayList<Habilidad>) habilidadService.verHabilidad();
     }
     @GetMapping("/getAll")

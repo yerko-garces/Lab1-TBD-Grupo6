@@ -8,7 +8,7 @@ import org.sql2o.Sql2o;
 @Configuration
 public class DatabaseContext {
 
-    @Value("jdbc:postgresql://localhost:5432/tbd2")
+    @Value("jdbc:postgresql://localhost:5432/tbd3")
     private String dbUrl;
 
     @Value("postgres")

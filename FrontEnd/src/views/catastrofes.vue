@@ -61,19 +61,21 @@ import { VLayoutItem } from 'vuetify/lib/components/index.mjs';
     data() {
       return {
         historial: [],
-        voluntario: null,
+        voluntario: "",
   
       };
     },
     mounted() {
+      this.getVol();
       this.cargarCatastrofes();
     },
     methods: {
-      cargarCatastrofes() {
-        const voluntario = JSON.parse(localStorage.getItem('voluntario'));
-        const url = `http://localhost:8090/emergencia/verEmergenciasDisponibles/${voluntario.idVoluntario}`;
-        axios.get(url)
+      async cargarCatastrofes() {
+        console.log(this.voluntario.idVoluntario);
+        const url = `http://localhost:8090/emergencia/verEmergenciasDisponibles/`+this.voluntario.idVoluntario;
+        await axios.get(url)
           .then(response => {
+            console.log(JSON.stringify(response.data));
             this.historial = response.data;
           })
           .catch(error => {
@@ -83,6 +85,8 @@ import { VLayoutItem } from 'vuetify/lib/components/index.mjs';
       verPrerequisitos(idEmergencia){
         localStorage.setItem("idEmergencia", JSON.stringify(idEmergencia));
         this.$router.push("/mostrarPrerequisitos");
+    },getVol(){
+        this.voluntario = JSON.parse(localStorage.getItem("voluntario"));
     },
     }
   };

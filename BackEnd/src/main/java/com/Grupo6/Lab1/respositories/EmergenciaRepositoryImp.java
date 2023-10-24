@@ -82,19 +82,16 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
     }
 
     @Override
-    public List<Emergencia> verEmergenciasDisponibles(Long idVoluntario){
+    public List<Emergencia> verEmergenciasDisponibles(Long idVoluntario) {
         try (Connection conn = sql2o.open()) {
-            return conn.createQuery("SELECT Em " +
-                            "FROM voluntario AS Vo " +
-                            "INNER JOIN voluntariohabilidad AS VH " +
-                            "ON Vo.idvoluntario = VH.idvoluntario " +
-                            "INNER JOIN habilidad AS Ha " +
-                            "ON Ha.idhabilidad = VH.idhabilidad " +
-                            "INNER JOIN emehabilidad AS EH " +
-                            "ON EH.idhabilidad = Ha.idhabilidad " +
-                            "INNER JOIN emergencia AS Em " +
-                            "ON Em.idemergencia = EH.idemergencia " +
-                            "WHERE Vo.idvoluntario = :idVoluntario")
+            return conn.createQuery(
+                            "SELECT Em.idEmergencia, Em.nombreEmergencia " +
+                                    "FROM voluntario AS Vo " +
+                                    "INNER JOIN voluntariohabilidad AS VH ON Vo.idvoluntario = VH.idvoluntario " +
+                                    "INNER JOIN habilidad AS Ha ON Ha.idhabilidad = VH.idhabilidad " +
+                                    "INNER JOIN emehabilidad AS EH ON EH.idhabilidad = Ha.idhabilidad " +
+                                    "INNER JOIN emergencia AS Em ON Em.idemergencia = EH.idemergencia " +
+                                    "WHERE Vo.idvoluntario = :idVoluntario")
                     .addParameter("idVoluntario", idVoluntario)
                     .executeAndFetch(Emergencia.class);
         } catch (Exception e) {
@@ -102,4 +99,5 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository {
             return null;
         }
     }
+
 }

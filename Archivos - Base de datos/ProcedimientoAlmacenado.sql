@@ -1,3 +1,4 @@
+-- Procedimiento para generar reporte
 CREATE OR REPLACE PROCEDURE generar_reporte()
 AS $$ DECLARE
     TopInserciones BIGINT;

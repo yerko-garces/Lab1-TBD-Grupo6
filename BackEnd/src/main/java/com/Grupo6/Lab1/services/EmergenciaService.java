@@ -30,8 +30,10 @@ public class EmergenciaService {
     }
 
     public List<Emergencia> verEmergenciasDisponibles(Long id){
+        System.out.println("id: "+id);
         List<Emergencia> emergencias = emergenciaRepository.verEmergenciasDisponibles(id);
-        System.out.println(emergencias);
+
+        System.out.println(emergencias.get(0).getNombreEmergencia());
         return emergencias;
     }
 

@@ -13,6 +13,7 @@ export default {
   methods: {
     async login() {
       try {
+        localStorage.clear();
         const response = await axios({
           method: "POST",
           url: "http://localhost:8090/voluntario/login",
@@ -23,13 +24,11 @@ export default {
         });
 
         if (response.status === 200) {
-          
+          localStorage.clear();
           const token = response.data.token;
           const voluntario = response.data.voluntario
-          localStorage.setItem("token", token);
-          axios.defaults.headers.common["Authorization"] =`Bearer ${token}`;
+            axios.defaults.headers.common["Authorization"] = token;
           localStorage.setItem('voluntario',JSON.stringify(voluntario))
-
           this.$router.push("/about");
         }
       } catch (error) {
@@ -92,7 +91,6 @@ export default {
         size="large"
         variant="tonal"
         to="/register"
-        @click="crear"
       >
         Registrarse
       </v-btn>

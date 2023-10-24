@@ -35,10 +35,6 @@ public class EmergenciaController {
     }
     @GetMapping("/verEmergenciasDisponibles/{id}")
     public List<Emergencia> verEmergenciasDisponibles(@PathVariable Long id){
-        System.out.println(id);
-        List<Emergencia> emergencias = emergenciaService.verEmergenciasDisponibles(id);
-        System.out.println(emergencias);
-        return emergencias;
+        return emergenciaService.verEmergenciasDisponibles(id);
     }
-
 }
